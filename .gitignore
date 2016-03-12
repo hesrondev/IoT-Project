@@ -28,4 +28,4 @@
 *.app
 
 # QT
-*.pro
+*.pro.user
