@@ -29,8 +29,8 @@ SOURCES += \
     performancetab.cpp \
     processortabdetails.cpp \
     processtab.cpp \
-    servercontrollertab.cpp \
-    serverlogindialog.cpp
+    serverlogindialog.cpp \
+    servertab.cpp
 
 HEADERS  += \
     aboutappdialog.h \
@@ -47,8 +47,8 @@ HEADERS  += \
     performancetab.h \
     processortabdetails.h \
     processtab.h \
-    servercontrollertab.h \
-    serverlogindialog.h
+    serverlogindialog.h \
+    servertab.h
 FORMS    += mainwindow.ui
 
 RESOURCES += \

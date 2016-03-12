@@ -6,7 +6,7 @@
 #include "processtab.h"
 #include "performancetab.h"
 #include "apphistorytab.h"
-#include "servercontrollertab.h"
+#include "servertab.h"
 
 class CentralWidget : public QTabWidget
 {
@@ -18,7 +18,7 @@ private:
     ProcessTab *_processTab;
     PerformanceTab *_performanceTab;
     AppHistoryTab *_apphistoryTab;
-    ServerControllerTab *_serverTab;
+    ServerTab *_serverTab;
 
 
 };

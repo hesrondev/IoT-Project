@@ -6,10 +6,10 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
-class ServerControllerTab : public QWidget
+class ServerTab : public QWidget
 {
 public:
-    ServerControllerTab();
+    ServerTab();
 };
 
 #endif // SERVERCONTROLLERTAB_H

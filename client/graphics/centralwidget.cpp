@@ -8,7 +8,7 @@ CentralWidget::CentralWidget()
     _processTab = new ProcessTab();
     _performanceTab = new PerformanceTab();
     _apphistoryTab = new AppHistoryTab();
-    _serverTab = new ServerControllerTab();
+    _serverTab = new ServerTab();
 
     //
 

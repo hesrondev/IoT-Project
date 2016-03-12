@@ -1,6 +1,6 @@
-#include "servercontrollertab.h"
+#include "servertab.h"
 
-ServerControllerTab::ServerControllerTab()
+ServerTab::ServerTab()
 {
     //
     QLabel *legendLabel = new QLabel("Liste des clients connectés au serveur.");
