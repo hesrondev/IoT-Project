@@ -11,5 +11,6 @@
         <file alias="network">icons/network_50.png</file>
         <file alias="processor">icons/processor_50.png</file>
         <file alias="hdd">icons/hdd_48.png</file>
+        <file alias="usb">icons/usb2_48.png</file>
     </qresource>
 </RCC>

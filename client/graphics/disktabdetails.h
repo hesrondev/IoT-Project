@@ -1,7 +1,10 @@
 #ifndef DISKTABDETAILS_H
 #define DISKTABDETAILS_H
 
+#include <QGroupBox>
+
 #include "performancegraph.h"
+#include "devicecustombutton.h"
 
 class DiskTabDetails : public PerformanceGraph
 {
