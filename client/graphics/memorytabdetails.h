@@ -1,7 +1,10 @@
 #ifndef MEMORYTABDETAILS_H
 #define MEMORYTABDETAILS_H
 
+#include <QProgressBar>
+
 #include "performancegraph.h"
+
 
 class MemoryTabDetails : public PerformanceGraph
 {
