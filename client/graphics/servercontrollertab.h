@@ -2,6 +2,9 @@
 #define SERVERCONTROLLERTAB_H
 
 #include <QWidget>
+#include <QTableWidget>
+#include <QVBoxLayout>
+#include <QLabel>
 
 class ServerControllerTab : public QWidget
 {
