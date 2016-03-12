@@ -5,6 +5,9 @@ AboutAppDialog::AboutAppDialog()
     // Params
     setModal(true);
     setWindowTitle("A propos du logiciel");
+    setWindowIcon(QIcon(":icons/monitor"));
+
+    setFixedSize(500, 250);
 
     QVBoxLayout *vl = new QVBoxLayout;
     setLayout(vl);

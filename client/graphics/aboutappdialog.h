@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QLabel>
+#include <QIcon>
 #include <QVBoxLayout>
 
 class AboutAppDialog : public QDialog
