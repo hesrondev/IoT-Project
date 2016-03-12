@@ -43,7 +43,7 @@ PerformanceTab::PerformanceTab()
     diskDetails = new DiskTabDetails("Disques (C: D:)", "SATA XREHYUFHT556", "Temps d'activité");
     networkDetails = new NetworkTabDetails("Ethernet", "Atheros Qualcom Intel X", "Débit");
 
-    vlayout->addWidget(networkDetails);
+    vlayout->addWidget(processorDetails);
 
     // Layering
 

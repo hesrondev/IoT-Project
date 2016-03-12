@@ -29,3 +29,6 @@
 
 # QT
 *.pro.user
+
+# Build repo
+/build*
