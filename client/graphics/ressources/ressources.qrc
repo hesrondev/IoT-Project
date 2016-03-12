@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="exit">icons/exit_50.png</file>
+        <file alias="stop">icons/stop_52.png</file>
+        <file alias="refresh">icons/refresh_64.png</file>
+        <file alias="monitor">icons/monitor_50.png</file>
+        <file alias="server">icons/server_50.png</file>
+        <file alias="settings">icons/settings_50.png</file>
+        <file alias="disk">icons/disk_50.png</file>
+        <file alias="memory">icons/memory_50.png</file>
+        <file alias="network">icons/network_50.png</file>
+        <file alias="processor">icons/processor_50.png</file>
+        <file alias="hdd">icons/hdd_48.png</file>
+    </qresource>
+</RCC>

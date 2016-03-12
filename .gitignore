@@ -31,4 +31,4 @@
 *.pro.user
 
 # Build repo
-/build*
+*/build*
