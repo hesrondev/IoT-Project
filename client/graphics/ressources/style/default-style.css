@@ -17,12 +17,11 @@ QLabel {
 }
 
 QGroupBox {
-   /* border: none; */
+    border: none;
     margin-top: 2ex;
 }
 
 QGroupBox::title {
- 
     subcontrol-origin: margin;
     subcontrol-position: top left;
     padding: 0 5px;
@@ -44,27 +43,32 @@ QPushButton {
 
 QMenuBar {
     margin: 0px;
-    background: #3870D0;
+    /* background: #3870D0; */
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                      stop:0 #f6f6f6, stop:1 #f0eeee);
     font-weight: 200;
-    font-size: 10.5pt;
-    
+    font-size: 10pt;
 }
 
  QMenuBar::item {
-     margin: 7px 7px;
-     padding: 3px 7px;
-     background: transparent;
-     border-radius: 3px;
-     color: #FFF;
+     margin: 3px 5px 0px 5px;
+     padding: 2px 5px;
+     /* background: transparent; */
+     border-radius: 0px;
+     border-top-left-radius: 2px;
+     border-top-right-radius: 2px;
+     /* color: #FFF; */
      
  }
 
  QMenuBar::item:selected { 
-     background: #2F5FBD;
+     background: #7d7d7d;
+     color: #fff;
  }
 
  QMenuBar::item:pressed {
-     background: #2F5FBD;
+     background: #7d7d7d;
+     color: #fff;
  }
 
 
@@ -90,5 +94,50 @@ QGroupBox#performance-tab-items {
 }
 
 
+/* Performance Custom - buttons */
 
+QPushButton#performance-custom-button {
+    border: none;
+}
 
+QPushButton#performance-custom-button:hover, QPushButton#performance-custom-button:selected {
+    border: 1px solid blue;
+    background: #b7e2fa;
+    opacity: 0.7;
+}
+
+QPushButton#performance-custom-button:selected {
+    
+}
+
+QLabel#perf-btn-title {
+    font-size: 11pt;
+    color: #383737; 
+}
+
+QLabel#perf-btn-subTitle {
+    font-size: 8.5pt;
+    color: #707991;   
+}
+
+/* Performance item infos */
+
+QLabel#perf-infos-title {
+    font-size: 15pt;
+    font-weight: 500;
+    color: #3c4a73;
+}
+
+QLabel#perf-infos-subTitle {
+    font-size: 13pt;
+    color: #3c4a73;
+}
+
+QLabel#perf-graph-legend {
+    font-size: 8pt;
+    color: #7e7e7e;
+}
+
+QGroupBox#perf-graph {
+    border: 1px solid #C2C7CB;
+}

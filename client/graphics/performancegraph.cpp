@@ -22,6 +22,9 @@ PerformanceGraph::PerformanceGraph(QString title, QString subTitle, QString grap
     subTitleLabel = new QLabel(subTitle);
     subTitleLabel->setAlignment(Qt::AlignRight);
 
+    titleLabel->setObjectName("perf-infos-title");
+    subTitleLabel->setObjectName("perf-infos-subTitle");
+
     titleLayout->addWidget(titleLabel);
     titleLayout->addWidget(subTitleLabel);
 
@@ -29,27 +32,32 @@ PerformanceGraph::PerformanceGraph(QString title, QString subTitle, QString grap
     QWidget *graphWidget = new QWidget();
     QGridLayout *graphlayout = new QGridLayout();
     graphlayout->setMargin(0);
+    graphlayout->setVerticalSpacing(1);
     graphWidget->setLayout(graphlayout);
 
     // labels
     graphLegendLabel = new QLabel(graphLegend);
     graphLegendLabel->setAlignment(Qt::AlignLeft);
     graphLegendLabel->setFixedHeight(15);
+    graphLegendLabel->setObjectName("perf-graph-legend");
 
     QLabel *graphLevelLabel = new QLabel("100%");
     graphLevelLabel->setAlignment(Qt::AlignRight);
+    graphLevelLabel->setObjectName("perf-graph-legend");
 
     QLabel *graphMaxTimeLabel = new QLabel("60 secondes");
     graphMaxTimeLabel->setAlignment(Qt::AlignLeft);
     graphMaxTimeLabel->setFixedHeight(15);
+    graphMaxTimeLabel->setObjectName("perf-graph-legend");
 
     QLabel *graphMinTimeLabel = new QLabel("0");
     graphMinTimeLabel->setAlignment(Qt::AlignRight);
+    graphMinTimeLabel->setObjectName("perf-graph-legend");
 
     // Graph groupbox
     QGroupBox *graphGBox = new QGroupBox();
     graphGBox->setMinimumHeight(200);
-
+    graphGBox->setObjectName("perf-graph");
     // center layering
     graphlayout->addWidget(graphLegendLabel, 0, 0);
     graphlayout->addWidget(graphLevelLabel, 0, 1);

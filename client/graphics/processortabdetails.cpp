@@ -64,7 +64,7 @@ ProcessorTabDetails::ProcessorTabDetails(QString title, QString subTitle, QStrin
     // spec labels
     QLabel *speedMaxLabel = new QLabel("Vitesse maximale:");
     QLabel *speedMaxValueLabel = new QLabel("3,40 GHz");
-    QLabel *coreLabel = new QLabel("Coeurs");
+    QLabel *coreLabel = new QLabel("Coeurs:");
     QLabel *coreValueLabel = new QLabel("4");
 
     specGLayout->addWidget(speedMaxLabel, 0, 0);

@@ -10,7 +10,7 @@ PerformanceTab::PerformanceTab()
     gbox->setMinimumWidth(230);
 
     QVBoxLayout *vl = new QVBoxLayout();
-    vl->setMargin(2);
+    vl->setMargin(5);
     vl->setSpacing(3);
     gbox->setLayout(vl);
 
@@ -20,10 +20,10 @@ PerformanceTab::PerformanceTab()
     PerformanceCustomButton *diskButton = new PerformanceCustomButton(QPixmap(":icons/disk"), "Disques");
     PerformanceCustomButton *networkButton = new PerformanceCustomButton(QPixmap(":icons/network"), "Réseau");
 
-    processorButton->setFixedHeight(55);
-    memoryButton->setFixedHeight(55);
-    diskButton->setFixedHeight(55);
-    networkButton->setFixedHeight(55);
+    processorButton->setFixedHeight(60);
+    memoryButton->setFixedHeight(60);
+    diskButton->setFixedHeight(60);
+    networkButton->setFixedHeight(60);
 
     // buttons layering
 
@@ -35,7 +35,7 @@ PerformanceTab::PerformanceTab()
 
     /* *******  Selected item details ****** */
 
-    QGroupBox *detailsGBox = new QGroupBox("Informations");
+    QGroupBox *detailsGBox = new QGroupBox("");
     vlayout = new QVBoxLayout();
     vlayout->setMargin(15);
     detailsGBox->setLayout(vlayout);

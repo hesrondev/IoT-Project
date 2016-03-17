@@ -2,6 +2,9 @@
 
 PerformanceCustomButton::PerformanceCustomButton(QPixmap icon, QString title)
 {
+    // class attributes
+    setObjectName("performance-custom-button");
+
     // Custom button for performance items
 
     // icon
@@ -10,11 +13,15 @@ PerformanceCustomButton::PerformanceCustomButton(QPixmap icon, QString title)
 
     // title
     titleLabel = new QLabel(title);
+    titleLabel->setObjectName("perf-btn-title");
 
 
     // display columns
     col2Label = new QLabel("4%");
     col3Label = new QLabel("2,45 GHz");
+
+    col2Label->setObjectName("perf-btn-subTitle");
+    col3Label->setObjectName("perf-btn-subTitle");
 
 
     // Layering
