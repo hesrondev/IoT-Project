@@ -17,7 +17,15 @@ QLabel {
 }
 
 QGroupBox {
-    border: none;
+   /* border: none; */
+    margin-top: 2ex;
+}
+
+QGroupBox::title {
+ 
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px;
 }
 
 QLineEdit {
@@ -64,8 +72,6 @@ QMenuBar {
 
 /* *********** TAB-WIDGET ********* */
 
-
-
 QTabBar {
     font-size: 10.5pt;
     color: #333333;
@@ -74,7 +80,6 @@ QTabBar {
 QTabWidget::tab-bar {
     alignment: center;
 }
-
 
 
 /* ******* Performance Left - Groupbox ****** */

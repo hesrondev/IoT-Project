@@ -31,6 +31,8 @@ void MainWindow::initWidgets()
 
     _centralWidget = new CentralWidget();
     setCentralWidget(_centralWidget);
+
+    _centralWidget->setObjectName("central-widget");
 }
 
 
