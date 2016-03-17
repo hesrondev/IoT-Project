@@ -8,7 +8,7 @@ MenuBar::MenuBar()
 void MenuBar::initWidgets()
 {
 
-    menuFile = new QMenu(tr("&Fichier"));
+    menuFile = new QMenu(tr("&Connexion"));
     menuDisplay = new QMenu(tr("&Affichage"));
     menuHelp = new QMenu(tr("&Aide"));
 

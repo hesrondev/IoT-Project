@@ -1,0 +1,89 @@
+/* General design */
+
+QWidget {
+    margin: 0px;
+    padding: 0px;
+	font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Segoe UI", "Tahoma", sans-serif;
+    font-weight: 400;
+	font-size: 9pt;
+    color: #4E4D4D;
+}
+
+
+/* Default widget design */
+
+QLabel {
+    
+}
+
+QGroupBox {
+    border: none;
+}
+
+QLineEdit {
+    border: none;
+}
+
+QPushButton {
+    
+}
+
+
+
+/* Menu */
+
+
+
+QMenuBar {
+    margin: 0px;
+    background: #3870D0;
+    font-weight: 200;
+    font-size: 10.5pt;
+    
+}
+
+ QMenuBar::item {
+     margin: 7px 7px;
+     padding: 3px 7px;
+     background: transparent;
+     border-radius: 3px;
+     color: #FFF;
+     
+ }
+
+ QMenuBar::item:selected { 
+     background: #2F5FBD;
+ }
+
+ QMenuBar::item:pressed {
+     background: #2F5FBD;
+ }
+
+
+
+
+/* *********** TAB-WIDGET ********* */
+
+
+
+QTabBar {
+    font-size: 10.5pt;
+    color: #333333;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+
+
+/* ******* Performance Left - Groupbox ****** */
+
+
+QGroupBox#performance-tab-items {
+    border-right: 1px solid #C2C7CB;
+}
+
+
+
+

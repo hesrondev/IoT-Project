@@ -6,10 +6,12 @@ PerformanceTab::PerformanceTab()
 
     // Group buttons box
     QGroupBox *gbox = new QGroupBox();
+    gbox->setObjectName("performance-tab-items");
     gbox->setMinimumWidth(230);
 
     QVBoxLayout *vl = new QVBoxLayout();
-    vl->setMargin(1);
+    vl->setMargin(2);
+    vl->setSpacing(3);
     gbox->setLayout(vl);
 
     // Buttons
@@ -48,6 +50,7 @@ PerformanceTab::PerformanceTab()
     // Layering
 
     QHBoxLayout *hl = new QHBoxLayout();
+    hl->setMargin(0);
     hl->addWidget(gbox, 0, Qt::AlignLeft);
     hl->addWidget(detailsGBox, 1);
     setLayout(hl);

@@ -8,6 +8,7 @@
 #include "serverlogindialog.h"
 #include "displaysettingsdialog.h"
 #include "aboutappdialog.h"
+#include "design.h"
 
 using namespace std;
 

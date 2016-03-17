@@ -31,7 +31,8 @@ SOURCES += \
     processtab.cpp \
     serverlogindialog.cpp \
     servertab.cpp \
-    devicecustombutton.cpp
+    devicecustombutton.cpp \
+    design.cpp
 
 HEADERS  += \
     aboutappdialog.h \
@@ -50,7 +51,8 @@ HEADERS  += \
     processtab.h \
     serverlogindialog.h \
     servertab.h \
-    devicecustombutton.h
+    devicecustombutton.h \
+    design.h
 FORMS    += mainwindow.ui
 
 RESOURCES += \

@@ -41,6 +41,7 @@ void MainWindow::initWidgets()
 void MainWindow::loginServerSlot()
 {
     ServerLoginDialog *serverLogin = new ServerLoginDialog();
+
     serverLogin->show();
 }
 

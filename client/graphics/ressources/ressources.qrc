@@ -13,4 +13,7 @@
         <file alias="hdd">icons/hdd_48.png</file>
         <file alias="usb">icons/usb2_48.png</file>
     </qresource>
+    <qresource prefix="/style">
+        <file alias="default-style">style/default-style.css</file>
+    </qresource>
 </RCC>
