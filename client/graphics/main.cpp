@@ -15,8 +15,6 @@ int main(int argc, char *argv[])
 
     qApp->setStyleSheet(designString);
 
-    std::cout << std::endl << designString.toStdString() << std::endl;
-
     MainWindow w;
     w.show();
 
