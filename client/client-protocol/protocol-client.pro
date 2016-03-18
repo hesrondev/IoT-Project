@@ -9,3 +9,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp
 
+RESOURCES += \
+    ressources/ressources.qrc
+
