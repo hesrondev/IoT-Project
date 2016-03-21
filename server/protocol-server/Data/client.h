@@ -8,8 +8,11 @@ using namespace std;
 
 class Client
 {
+    friend class FenServeur;
+
 public:
     Client();
+    Client(QTcpSocket *socket);
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
 

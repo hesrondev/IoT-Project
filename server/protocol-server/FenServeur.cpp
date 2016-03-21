@@ -5,6 +5,9 @@
 FenServeur::FenServeur()
 {
     // Création et disposition des widgets de la fenêtre
+
+    setWindowTitle(tr("Serveur"));
+
     etatServeur = new QLabel;
     etatServeur->setAlignment(Qt::AlignCenter);
 
@@ -16,26 +19,22 @@ FenServeur::FenServeur()
     layout->addWidget(boutonQuitter);
     setLayout(layout);
 
-    setWindowTitle(tr("Serveur"));
 
     // Gestion du serveur this permet que lorsque la fenetre est detruit le serveur aussi
+
     serveur = new QTcpServer(this);
-    if (!serveur->listen(QHostAddress::Any, 50885)) // Démarrage du serveur sur toutes les IP disponibles et sur le port 50585
+    if (!serveur->listen(QHostAddress::Any, 50885))     // Démarrage du serveur sur toutes les IP disponibles et sur le port 50585
     {
-        // Si le serveur n'a pas été démarré correctement
         etatServeur->setText(tr("Le serveur n'a pas pu être démarré. Raison :<br />") + serveur->errorString());
     }
     else
     {
-        // Si le serveur a été démarré correctement
         etatServeur->setText(tr("Le serveur a été démarré sur le port <strong>") + QString::number(serveur->serverPort()) + tr("</strong>.<br />Des clients peuvent maintenant se connecter."));
         connect(serveur, SIGNAL(newConnection()), this, SLOT(nouvelleConnexion()));
 
         QTimer *timer = new QTimer();
         connect(timer, SIGNAL(timeout()), this, SLOT(broadcast()));
-
         timer->start(566);
-
     }
 
     tailleMessage = 0;
@@ -59,29 +58,47 @@ void FenServeur::envoyerATous(const QString &message)
     // Envoi du paquet préparé à tous les clients connectés au serveur
 
     for (int i = 0; i < clients.size(); i++)
-        clients[i]->write(paquet);
-
+        clients[i]->socket->write(paquet);
 }
 
+
+// Trouver un client en connaissant son socket
+
+Client *FenServeur::findClientBySocket(QTcpSocket *socket)
+{
+    for (int i = 0; i < clients.size(); i++)
+    {
+        if (clients[i]->socket == socket)
+            return clients[i];
+    }
+
+    return NULL;
+}
+
+
+
+/* ****** SLOTS ********* */
 
 void FenServeur::nouvelleConnexion()
 {
+    /// On signale la connexion à tous les clients [MESSAGE PERSO -- MAJ Serveur]
     envoyerATous(tr("<em>Un nouveau client vient de se connecter</em>"));
+
     // récupérer la socket correspondant au nouveau client
-    QTcpSocket *nouveauClient = serveur->nextPendingConnection();
+    QTcpSocket * socketClient= serveur->nextPendingConnection();
+
+    Client *nouveauClient = new Client(socketClient);
+
     //conserve la liste des clients connectés
     clients << nouveauClient;
+
     // readyRead() : signale que le client a envoyé des données
-    connect(nouveauClient, SIGNAL(readyRead()), this, SLOT(donneesRecues()));
+    connect(nouveauClient->socket, SIGNAL(readyRead()), this, SLOT(donneesRecues()));
+
     //disconnected() : signale que le client s'est déconnecté
-    connect(nouveauClient, SIGNAL(disconnected()), this, SLOT(deconnexionClient()));
+    connect(nouveauClient->socket, SIGNAL(disconnected()), this, SLOT(deconnexionClient()));
 
 }
-
-
-
-
-
 
 void FenServeur::donneesRecues(){
     // 1 : on reçoit un paquet (ou un sous-paquet) d'un des clients
@@ -130,10 +147,18 @@ void FenServeur::deconnexionClient()
     QTcpSocket *socket = qobject_cast<QTcpSocket *>(sender());
     if (socket == 0) // Si par hasard on n'a pas trouvé le client à l'origine du signal, on arrête la méthode
         return;
-   // supprimer le pointeur vers l'objet dans le tableau
-    clients.removeOne(socket);
-    // supprimer plus tard eviter de faire planter qt
-    socket->deleteLater();
+
+    Client *client = findClientBySocket(socket);
+
+    if (client != NULL)
+    {
+        // supprimer le pointeur vers l'objet dans le tableau
+         clients.removeOne(client);
+         // supprimer plus tard poue éviter de faire planter qt
+         client->socket->deleteLater();
+
+         /// DELETE CLIENT
+    }
 }
 
 void FenServeur::broadcast()

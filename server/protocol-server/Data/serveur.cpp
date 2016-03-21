@@ -59,7 +59,7 @@ void Serveur::read(const QJsonObject &json)
       for(int i = 0 ; i < clientArray.size(); ++i)
       {
           QJsonObject clientObject = clientArray[i].toObject();
-          Client client ;
+          Client client;
           client.read(clientObject);
           listClients.append(&client);
       }

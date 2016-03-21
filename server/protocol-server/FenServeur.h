@@ -6,7 +6,9 @@
 #include <string>
 #include <iostream>
 #include <QTimer>
+
 #include "Data/serverMessage.h"
+#include "Data/client.h"
 
 
 class FenServeur : public QWidget
@@ -18,6 +20,8 @@ class FenServeur : public QWidget
         FenServeur();
      // envoyer a tout les client connecter le message
         void envoyerATous(const QString &message);
+    // trouver client par socket
+        Client *findClientBySocket(QTcpSocket *socket);
 
     private slots:
         // apeller lors qu'un client se connecte
@@ -36,7 +40,7 @@ class FenServeur : public QWidget
     // le serveur sur le reseau
         QTcpServer *serveur;
       // liste des client
-        QList<QTcpSocket *> clients;
+        QList<Client *> clients;
        // la taille du message
         quint16 tailleMessage;
 };

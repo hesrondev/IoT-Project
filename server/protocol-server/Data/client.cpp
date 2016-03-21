@@ -1,8 +1,12 @@
 #include "client.h"
 
-Client::Client() : dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
+Client::Client()
 {
-    socket;
+}
+
+Client::Client(QTcpSocket *socket) : dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
+{
+    this->socket = socket;
     adresseIp ="192.168.1.1";
     IdConnexion =10 ;
     nom ="client";
