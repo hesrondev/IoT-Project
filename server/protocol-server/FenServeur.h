@@ -38,7 +38,7 @@ class FenServeur : public QWidget
         void deconnexionClient();
 
         // broadcaster
-        void sendVMData();
+        // void sendVMData();
         void sendProcessesData();
         void sendCpuData();
         void sendRamData();

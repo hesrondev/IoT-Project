@@ -16,8 +16,11 @@ public:
     Client(QTcpSocket *socket);
     void read(const QJsonObject &json);
     void write(QJsonObject &json);
+
     void stopTimers();
     void startTimers();
+
+    void disconnect();
 
 private:
     QTcpSocket* socket;

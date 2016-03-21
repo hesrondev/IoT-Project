@@ -1,14 +1,18 @@
 #ifndef SERVEUR_H
 #define SERVEUR_H
+
 #include <iostream>
 #include <QList>
+
 #include"client.h"
+#include"serverMessage.h"
+
 using namespace std;
 
 
 
 
-class Serveur
+class Serveur : public ServerMessage
 {
 public:
     Serveur(QList<Client *> clients);

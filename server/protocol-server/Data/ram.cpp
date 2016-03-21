@@ -1,6 +1,6 @@
 #include "ram.h"
 
-Ram::Ram()
+Ram::Ram() : ServerMessage("RAM")
 {
     nom = "Mémoire RAM";
     capacite =1.2;
@@ -40,6 +40,7 @@ void Ram::setDisponible(double value)
 
 void Ram::read(const QJsonObject &json)
 {
+    type = json["type"].toString();
     nom = json["nom"].toString();
     capacite = json["capacite"].toDouble();
     utiliser = json["utilise"].toDouble();
@@ -48,6 +49,7 @@ void Ram::read(const QJsonObject &json)
 
 void Ram::write(QJsonObject &json) const
 {
+    json["type"] = type;
     json["nom"] = nom;
     json["capacite"] = capacite;
     json["utilise"] = utiliser;

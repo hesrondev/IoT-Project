@@ -159,7 +159,10 @@ void FenServeur::deconnexionClient()
     if (client != NULL)
     {
         // supprimer le pointeur vers l'objet dans le tableau
-        clients.removeOne(client);
+        // clients.removeOne(client);
+
+        // Changer le statut du client
+        client->disconnect();
 
         // stoper les timers
         client->stopTimers();
@@ -171,7 +174,7 @@ void FenServeur::deconnexionClient()
     }
 }
 
-//
+/*
 
 void FenServeur::sendVMData()
 {
@@ -187,6 +190,8 @@ void FenServeur::sendVMData()
 
     envoyerATous(message);
 }
+
+*/
 
 // Processes data
 

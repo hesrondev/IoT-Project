@@ -1,6 +1,6 @@
 #include "serveur.h"
 
-Serveur::Serveur(QList<Client *> clients) : listClients(clients)
+Serveur::Serveur(QList<Client *> clients) : ServerMessage("SERVER"), listClients(clients)
 {
      nom = "serveur";
      ip = "192.168.1.1";
@@ -49,24 +49,26 @@ void Serveur::setListClients(const QList<Client*> &value)
 
 void Serveur::read(const QJsonObject &json)
 {
-     nom = json["nom"].toString();
-     ip = json["ip"].toString();
-     port = json["port"].toInt();
+    type = json["type"].toString();
+    nom = json["nom"].toString();
+    ip = json["ip"].toString();
+    port = json["port"].toInt();
 
-     listClients.clear();
-     QJsonArray clientArray = json["lclient"].toArray();
+    listClients.clear();
+    QJsonArray clientArray = json["lclient"].toArray();
 
-      for(int i = 0 ; i < clientArray.size(); ++i)
-      {
-          QJsonObject clientObject = clientArray[i].toObject();
-          Client client;
-          client.read(clientObject);
-          listClients.append(&client);
-      }
+    for(int i = 0 ; i < clientArray.size(); ++i)
+    {
+        QJsonObject clientObject = clientArray[i].toObject();
+        Client client;
+        client.read(clientObject);
+        listClients.append(&client);
+    }
  }
 
 void Serveur::write(QJsonObject &json)
 {
+    json["type"] = type;
     json["nom"] = nom ;
     json["ip"] = ip;
     json["port"] = port;

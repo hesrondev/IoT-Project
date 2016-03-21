@@ -3,9 +3,11 @@
 #include <iostream>
 #include <QJsonObject>
 
+#include "serverMessage.h"
+
 using namespace std;
 
-class Network
+class Network : public ServerMessage
 {
 public:
     Network();

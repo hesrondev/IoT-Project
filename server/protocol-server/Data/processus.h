@@ -4,9 +4,11 @@
 #include <iostream>
 #include <QJsonObject>
 
+#include "serverMessage.h"
+
 using namespace std;
 
-class Processus
+class Processus : public ServerMessage
 {
 public:
     Processus();

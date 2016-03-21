@@ -1,7 +1,7 @@
 #include "processus.h"
 
 
-Processus::Processus()
+Processus::Processus() : ServerMessage("PROCESS")
 {
      nom ="processus1";
      pid =1;
@@ -73,6 +73,7 @@ void Processus::setTaille(double value)
 
 void Processus::read(const QJsonObject &json)
 {
+    type = json["type"].toString();
     nom = json["nom"].toString();
     pid = json["pid"].toInt();
     status = json["status"].toBool();
@@ -83,12 +84,12 @@ void Processus::read(const QJsonObject &json)
 
 void Processus::write(QJsonObject &json) const
 {
-      json["nom"] = nom;
-      json["pid"] = pid;
-      json["status"] = status;
-      json["utilisateur"] = utilisateur;
-      json["uid"] = uid ;
-      json["taille"] = taille;
-
+    json["type"] = type;
+    json["nom"] = nom;
+    json["pid"] = pid;
+    json["status"] = status;
+    json["utilisateur"] = utilisateur;
+    json["uid"] = uid ;
+    json["taille"] = taille;
 }
 

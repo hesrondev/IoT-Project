@@ -78,3 +78,8 @@ void Client::startTimers()
     networkTimer->start(ms * networkFq);
     serverTimer->start(ms * serverFq);
 }
+
+void Client::disconnect()
+{
+    status = false;
+}

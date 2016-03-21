@@ -2,10 +2,13 @@
 #define CPU_H
 #include <iostream>
 #include <QJsonObject>
+
+#include "serverMessage.h"
+
 using namespace std;
 
 
-class Cpu
+class Cpu : public ServerMessage
 {
 public:
     Cpu();

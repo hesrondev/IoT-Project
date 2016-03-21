@@ -3,10 +3,12 @@
 #include <iostream>
 #include <QJsonObject>
 
+#include "serverMessage.h"
+
 using namespace std;
 
 
-class Ram
+class Ram : public ServerMessage
 {
 public:
     Ram();

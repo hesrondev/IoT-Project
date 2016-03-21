@@ -1,6 +1,6 @@
 #include "disque.h"
 
-Disque::Disque()
+Disque::Disque() : ServerMessage("DISK")
 {
      nom ="disk";
      capaciteUtiliser =1.0;
@@ -51,6 +51,7 @@ void Disque::setMemoireMax(double value)
 
 void Disque::read(const QJsonObject &json)
 {
+    type = json["type"].toString();
     nom = json["nom"].toString();
     capaciteUtiliser = json["capaciteUtiliser"].toDouble();
     capaciteLibre  = json["capaciteLibre"].toDouble();
@@ -59,9 +60,10 @@ void Disque::read(const QJsonObject &json)
 
 void Disque::write(QJsonObject &json) const
 {
-     json["nom"] = nom;
-     json["capaciteUtiliser"] = capaciteUtiliser;
-     json["capaciteLibre"] = capaciteLibre;
-     json["memoireMax"] = memoireMax;
+    json["type"] = type;
+    json["nom"] = nom;
+    json["capaciteUtiliser"] = capaciteUtiliser;
+    json["capaciteLibre"] = capaciteLibre;
+    json["memoireMax"] = memoireMax;
 }
 

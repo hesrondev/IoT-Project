@@ -3,10 +3,12 @@
 #include <iostream>
 #include <QJsonObject>
 
+#include "serverMessage.h"
+
 using namespace std;
 
 
-class Disque
+class Disque : public ServerMessage
 {
 public:
     Disque();
