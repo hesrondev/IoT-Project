@@ -17,11 +17,24 @@ public:
     void read(const QJsonObject &json);
     void write(QJsonObject &json);
     void stopTimers();
+    void startTimers();
 
 private:
     QTcpSocket* socket;
-    QTimer *defaultTimer;
-    int frequency;
+
+    QTimer *processTimer;
+    QTimer *cpuTimer;
+    QTimer *ramTimer;
+    QTimer *diskTimer;
+    QTimer *networkTimer;
+    QTimer *serverTimer;
+
+    int processFq;
+    int cpuFq;
+    int ramFq;
+    int diskFq;
+    int networkFq;
+    int serverFq;
 
     QString adresseIp;
     int IdConnexion ;

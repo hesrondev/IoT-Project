@@ -26,16 +26,6 @@ void ServerMessage::setRam(const Ram &value)
     ram = value;
 }
 
-Processus ServerMessage::getProcessur() const
-{
-    return processus;
-}
-
-void ServerMessage::setProcessur(const Processus &value)
-{
-    processus = value;
-}
-
 Network ServerMessage::getNetwork() const
 {
     return network;
@@ -44,6 +34,11 @@ Network ServerMessage::getNetwork() const
 void ServerMessage::setNetwork(const Network &value)
 {
     network = value;
+}
+
+void ServerMessage::setProcessus(const Processus &value)
+{
+
 }
 
 Disque ServerMessage::getDisque() const

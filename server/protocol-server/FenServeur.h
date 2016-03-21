@@ -7,8 +7,14 @@
 #include <iostream>
 #include <QTimer>
 
-#include "Data/serverMessage.h"
+#include "Data/cpu.h"
+#include "Data/processus.h"
+#include "Data/ram.h"
+#include "Data/network.h"
+#include "Data/serveur.h"
+#include "Data/disque.h"
 #include "Data/client.h"
+#include "Data/serverMessage.h"
 
 
 class FenServeur : public QWidget
@@ -33,6 +39,12 @@ class FenServeur : public QWidget
 
         // broadcaster
         void sendVMData();
+        void sendProcessesData();
+        void sendCpuData();
+        void sendRamData();
+        void sendDiskData();
+        void sendNetworkData();
+        void sendServerData();
 
     private:
         QLabel *etatServeur;

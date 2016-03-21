@@ -95,8 +95,15 @@ void FenServeur::nouvelleConnexion()
     connect(nouveauClient->socket, SIGNAL(disconnected()), this, SLOT(deconnexionClient()));
 
     // timers
-    connect(nouveauClient->defaultTimer, SIGNAL(timeout()), this, SLOT(sendVMData()));
-    nouveauClient->defaultTimer->start(2000 / nouveauClient->frequency);    // 2 seconde divisé par le nombre de fois
+
+    connect(nouveauClient->processTimer, SIGNAL(timeout()), this, SLOT(sendProcessesData()));
+    connect(nouveauClient->cpuTimer, SIGNAL(timeout()), this, SLOT(sendCpuData()));
+    connect(nouveauClient->ramTimer, SIGNAL(timeout()), this, SLOT(sendRamData()));
+    connect(nouveauClient->networkTimer, SIGNAL(timeout()), this, SLOT(sendNetworkData()));
+    connect(nouveauClient->diskTimer, SIGNAL(timeout()), this, SLOT(sendDiskData()));
+    connect(nouveauClient->serverTimer, SIGNAL(timeout()), this, SLOT(sendServerData()));
+
+    nouveauClient->startTimers();
 
 }
 
@@ -164,11 +171,109 @@ void FenServeur::deconnexionClient()
     }
 }
 
+//
+
 void FenServeur::sendVMData()
 {
     ServerMessage sm(clients);
     QJsonObject  js ;
 
+    sm.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    cout << message.toStdString() << endl << endl;
+
+    envoyerATous(message);
+}
+
+// Processes data
+
+void FenServeur::sendProcessesData()
+{
+    Processus sm;
+    QJsonObject  js ;
+    sm.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    cout << message.toStdString() << endl << endl;
+
+    envoyerATous(message);
+}
+
+// Cpu data
+
+void FenServeur::sendCpuData()
+{
+    Cpu sm;
+    QJsonObject  js ;
+    sm.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    cout << message.toStdString() << endl << endl;
+
+    envoyerATous(message);
+}
+
+// Ram data
+
+void FenServeur::sendRamData()
+{
+    Ram sm;
+    QJsonObject  js ;
+    sm.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    cout << message.toStdString() << endl << endl;
+
+    envoyerATous(message);
+}
+
+// Disk data
+
+void FenServeur::sendDiskData()
+{
+    Disque sm;
+    QJsonObject  js ;
+    sm.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    cout << message.toStdString() << endl << endl;
+
+    envoyerATous(message);
+}
+
+// Network data
+
+void FenServeur::sendNetworkData()
+{
+    Network sm;
+    QJsonObject  js ;
+    sm.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    cout << message.toStdString() << endl << endl;
+
+    envoyerATous(message);
+}
+
+// Server data
+
+void FenServeur::sendServerData()
+{
+    Serveur sm(clients);
+    QJsonObject  js ;
     sm.write(js);
 
     QJsonDocument doc(js);

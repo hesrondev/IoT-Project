@@ -2,7 +2,7 @@
 
 Network::Network()
 {
-    nom = "Network";
+    nom = "network";
     debitEnvoi = 1.1;
     debitRecu = 1.2;
 }

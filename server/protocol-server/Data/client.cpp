@@ -13,10 +13,21 @@ Client::Client(QTcpSocket *socket) : dateDebutConnexion(QDateTime::currentDateTi
     nom ="client";
     status = true;
 
-    // timers
-    frequency = 1;  // nombre de fois par seconde
-    defaultTimer = new QTimer();
+    // timers, nombre de fois par seconde
 
+    processFq = 1;
+    cpuFq = 2;
+    ramFq = 3;
+    diskFq = 4;
+    networkFq = 5;
+    serverFq = 2;
+
+    processTimer = new QTimer();
+    cpuTimer = new QTimer();
+    ramTimer = new QTimer();
+    diskTimer = new QTimer();
+    networkTimer = new QTimer();
+    serverTimer = new QTimer();
 }
 
 void Client::read(const QJsonObject &json)
@@ -38,8 +49,7 @@ void Client::write(QJsonObject &json)
     json["dateDebutConnexion"] =  dateDebutConnexion.toString();
 
     // set last connection date
-    //dateDerniereConnexion.setDate(QDate::currentDate());
-    //dateDerniereConnexion.setTime(QTime::currentTime());
+
     dateDerniereConnexion = QDateTime::currentDateTime();
     json["dateDerniereConnexion"] =  dateDerniereConnexion.toString();
 }
@@ -49,5 +59,22 @@ void Client::write(QJsonObject &json)
 
 void Client::stopTimers()
 {
-    defaultTimer->stop();
+    processTimer->stop();
+    cpuTimer->stop();
+    ramTimer->stop();
+    diskTimer->stop();
+    networkTimer->stop();
+    serverTimer->stop();
+}
+
+void Client::startTimers()
+{
+    int ms = 1000;
+
+    processTimer->start(ms * processFq);
+    cpuTimer->start(ms * cpuFq);
+    ramTimer->start(ms * ramFq);
+    diskTimer->start(ms * diskFq);
+    networkTimer->start(ms * networkFq);
+    serverTimer->start(ms * serverFq);
 }
