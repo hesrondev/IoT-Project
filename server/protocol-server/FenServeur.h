@@ -32,7 +32,7 @@ class FenServeur : public QWidget
         void deconnexionClient();
 
         // broadcaster
-        void broadcast();
+        void sendVMData();
 
     private:
         QLabel *etatServeur;

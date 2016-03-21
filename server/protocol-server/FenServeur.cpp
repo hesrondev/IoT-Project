@@ -31,10 +31,6 @@ FenServeur::FenServeur()
     {
         etatServeur->setText(tr("Le serveur a été démarré sur le port <strong>") + QString::number(serveur->serverPort()) + tr("</strong>.<br />Des clients peuvent maintenant se connecter."));
         connect(serveur, SIGNAL(newConnection()), this, SLOT(nouvelleConnexion()));
-
-        QTimer *timer = new QTimer();
-        connect(timer, SIGNAL(timeout()), this, SLOT(broadcast()));
-        timer->start(566);
     }
 
     tailleMessage = 0;
@@ -98,6 +94,10 @@ void FenServeur::nouvelleConnexion()
     //disconnected() : signale que le client s'est déconnecté
     connect(nouveauClient->socket, SIGNAL(disconnected()), this, SLOT(deconnexionClient()));
 
+    // timers
+    connect(nouveauClient->defaultTimer, SIGNAL(timeout()), this, SLOT(sendVMData()));
+    nouveauClient->defaultTimer->start(2000 / nouveauClient->frequency);    // 2 seconde divisé par le nombre de fois
+
 }
 
 void FenServeur::donneesRecues(){
@@ -135,7 +135,6 @@ void FenServeur::donneesRecues(){
     // 3 : remise de la taille du message à 0 pour permettre la réception des futurs messages
     tailleMessage = 0;
 
-
 }
 
 
@@ -153,17 +152,29 @@ void FenServeur::deconnexionClient()
     if (client != NULL)
     {
         // supprimer le pointeur vers l'objet dans le tableau
-         clients.removeOne(client);
-         // supprimer plus tard poue éviter de faire planter qt
-         client->socket->deleteLater();
+        clients.removeOne(client);
 
-         /// DELETE CLIENT
+        // stoper les timers
+        client->stopTimers();
+
+        // supprimer plus tard poue éviter de faire planter qt
+        client->socket->deleteLater();
+
+        /// DELETE CLIENT
     }
 }
 
-void FenServeur::broadcast()
+void FenServeur::sendVMData()
 {
-     //ServerMessage sm;
+    ServerMessage sm(clients);
+    QJsonObject  js ;
 
-    //envoyerATous(sm.write());
+    sm.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    cout << message.toStdString() << endl << endl;
+
+    envoyerATous(message);
 }

@@ -11,7 +11,7 @@ using namespace std;
 class Serveur
 {
 public:
-    Serveur();
+    Serveur(QList<Client *> clients);
     QString getNom() const;
     void setNom(const QString &value);
 
@@ -25,7 +25,7 @@ public:
     void setListClients(const QList<Client*> &value);
 
     void read(const QJsonObject &json);
-    void write(QJsonObject &json)const;
+    void write(QJsonObject &json);
 
 private:
     QString nom;

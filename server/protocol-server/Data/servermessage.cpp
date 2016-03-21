@@ -1,6 +1,6 @@
 #include "serverMessage.h"
 
-ServerMessage::ServerMessage() : cpu(), disque(), network(), processus(), ram(), serveur()
+ServerMessage::ServerMessage(QList<Client*> clients) : cpu(), disque(), network(), processus(), ram(), serveur(clients)
 {
      type ="type";
      nomServeur="nom";
@@ -110,7 +110,7 @@ void ServerMessage::read(const QJsonObject &json)
     serveur.read(jsonServer);
 }
 
-void ServerMessage::write(QJsonObject &json) const
+void ServerMessage::write(QJsonObject &json)
 {
     json["type"] = type;
     json["nom"] = nomServeur;

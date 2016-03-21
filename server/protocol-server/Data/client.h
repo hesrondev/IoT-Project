@@ -3,6 +3,7 @@
 #include <QtNetwork>
 #include <iostream>
 #include <QDateTime>
+#include <QDate>
 
 using namespace std;
 
@@ -14,10 +15,14 @@ public:
     Client();
     Client(QTcpSocket *socket);
     void read(const QJsonObject &json);
-    void write(QJsonObject &json)const;
+    void write(QJsonObject &json);
+    void stopTimers();
 
 private:
     QTcpSocket* socket;
+    QTimer *defaultTimer;
+    int frequency;
+
     QString adresseIp;
     int IdConnexion ;
     QString nom;

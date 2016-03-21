@@ -1,6 +1,6 @@
 #include "serveur.h"
 
-Serveur::Serveur() : listClients()
+Serveur::Serveur(QList<Client *> clients) : listClients(clients)
 {
      nom = "serveur";
      ip = "192.168.1.1";
@@ -65,15 +65,16 @@ void Serveur::read(const QJsonObject &json)
       }
  }
 
-void Serveur::write(QJsonObject &json) const
+void Serveur::write(QJsonObject &json)
 {
     json["nom"] = nom ;
     json["ip"] = ip;
     json["port"] = port;
 
     QJsonArray clientArray;
-    foreach(const Client* c , listClients){
+    foreach(Client* c , listClients){
         QJsonObject clientObject;
+
         c->write(clientObject);
         clientArray.append(clientObject);
     }

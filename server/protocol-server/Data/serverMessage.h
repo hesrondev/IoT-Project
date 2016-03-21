@@ -15,7 +15,7 @@ using namespace std;
 class ServerMessage
 {
 public:
-    ServerMessage();
+    ServerMessage(QList<Client *> clients);
     QString getType() const;
     void setType(const QString &value);
 
@@ -40,7 +40,7 @@ public:
     Serveur getServeur() const;
     void setServeur(const Serveur &value);
     void read(const QJsonObject &json);
-    void write(QJsonObject &json)const;
+    void write(QJsonObject &json);
 
 private:
     QString type;
