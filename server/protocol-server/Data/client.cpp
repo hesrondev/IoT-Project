@@ -4,12 +4,12 @@ Client::Client()
 {
 }
 
-Client::Client(QTcpSocket *socket) : dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
+Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
 {
     this->socket = socket;
 
     adresseIp ="192.168.1.1";
-    IdConnexion =10 ;
+    IdConnexion = id;
     nom ="client";
     status = true;
 
@@ -82,4 +82,17 @@ void Client::startTimers()
 void Client::disconnect()
 {
     status = false;
+}
+
+
+/* **** Getters and Setters *** */
+
+int Client::getIdConnexion() const
+{
+    return IdConnexion;
+}
+
+void Client::setIdConnexion(int value)
+{
+    IdConnexion = value;
 }

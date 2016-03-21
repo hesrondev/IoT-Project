@@ -83,8 +83,7 @@ void FenServeur::nouvelleConnexion()
     // récupérer la socket correspondant au nouveau client
     QTcpSocket * socketClient= serveur->nextPendingConnection();
 
-    Client *nouveauClient = new Client(socketClient);
-
+    Client *nouveauClient = new Client(clients.size() + 1, socketClient);
     //conserve la liste des clients connectés
     clients << nouveauClient;
 
@@ -158,9 +157,6 @@ void FenServeur::deconnexionClient()
 
     if (client != NULL)
     {
-        // supprimer le pointeur vers l'objet dans le tableau
-        // clients.removeOne(client);
-
         // Changer le statut du client
         client->disconnect();
 
@@ -170,28 +166,8 @@ void FenServeur::deconnexionClient()
         // supprimer plus tard poue éviter de faire planter qt
         client->socket->deleteLater();
 
-        /// DELETE CLIENT
     }
 }
-
-/*
-
-void FenServeur::sendVMData()
-{
-    ServerMessage sm(clients);
-    QJsonObject  js ;
-
-    sm.write(js);
-
-    QJsonDocument doc(js);
-    QString message(doc.toJson(QJsonDocument::Compact));
-
-    cout << message.toStdString() << endl << endl;
-
-    envoyerATous(message);
-}
-
-*/
 
 // Processes data
 

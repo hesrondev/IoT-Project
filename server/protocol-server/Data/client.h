@@ -13,7 +13,7 @@ class Client
 
 public:
     Client();
-    Client(QTcpSocket *socket);
+    Client(int id, QTcpSocket *socket);
     void read(const QJsonObject &json);
     void write(QJsonObject &json);
 
@@ -21,6 +21,9 @@ public:
     void startTimers();
 
     void disconnect();
+
+    int getIdConnexion() const;
+    void setIdConnexion(int value);
 
 private:
     QTcpSocket* socket;
