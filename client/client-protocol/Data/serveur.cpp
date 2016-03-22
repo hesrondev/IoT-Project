@@ -14,46 +14,6 @@ Serveur::Serveur(QList<Client *> clients) : ServerMessage("SERVER"), listClients
      port = 1010;
 }
 
-QString Serveur::getNom() const
-{
-    return nom;
-}
-
-void Serveur::setNom(const QString &value)
-{
-    nom = value;
-}
-
-QString Serveur::getIp() const
-{
-    return ip;
-}
-
-void Serveur::setIp(const QString &value)
-{
-    ip = value;
-}
-
-int Serveur::getPort() const
-{
-    return port;
-}
-
-void Serveur::setPort(int value)
-{
-    port = value;
-}
-
-QList<Client *> Serveur::getListClients() const
-{
-    return listClients;
-}
-
-void Serveur::setListClients(const QList<Client*> &value)
-{
-    listClients = value;
-}
-
 void Serveur::read(const QJsonObject &json)
 {
     type = json["type"].toString();

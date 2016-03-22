@@ -10,24 +10,11 @@
 using namespace std;
 
 
-
-
 class Serveur : public ServerMessage
 {
 public:
     Serveur();
     Serveur(QList<Client *> clients);
-    QString getNom() const;
-    void setNom(const QString &value);
-
-    QString getIp() const;
-    void setIp(const QString &value);
-
-    int getPort() const;
-    void setPort(int value);
-
-    QList<Client*> getListClients() const;
-    void setListClients(const QList<Client*> &value);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json);
