@@ -3,39 +3,9 @@
 Ram::Ram() : ServerMessage("RAM")
 {
     nom = "Mémoire RAM";
-    capacite =1.2;
-    utiliser=1.3;
-    disponible=2.5;
-}
-
-double Ram::getCapacite() const
-{
-    return capacite;
-}
-
-void Ram::setCapacite(double value)
-{
-    capacite = value;
-}
-
-double Ram::getUtiliser() const
-{
-    return utiliser;
-}
-
-void Ram::setUtiliser(double value)
-{
-    utiliser = value;
-}
-
-double Ram::getDisponible() const
-{
-    return disponible;
-}
-
-void Ram::setDisponible(double value)
-{
-    disponible = value;
+    capacite = 1.2;
+    utiliser = 1.3;
+    disponible = 2.5;
 }
 
 void Ram::read(const QJsonObject &json)

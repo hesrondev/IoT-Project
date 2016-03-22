@@ -10,7 +10,7 @@ Serveur::Serveur() : ServerMessage("SERVER"), listClients()
 Serveur::Serveur(QList<Client *> clients) : ServerMessage("SERVER"), listClients(clients)
 {
      nom = "serveur";
-     ip = "192.168.1.1";
+     ip = "0.0.0.0";
      port = 1010;
 }
 

@@ -12,17 +12,6 @@ class Disque : public ServerMessage
 {
 public:
     Disque();
-    QString getNom() const;
-    void setNom(const QString &value);
-
-    double getCapaciteUtiliser() const;
-    void setCapaciteUtiliser(double value);
-
-    double getCapaciteLibre() const;
-    void setCapaciteLibre(double value);
-
-    double getMemoireMax() const;
-    void setMemoireMax(double value);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;

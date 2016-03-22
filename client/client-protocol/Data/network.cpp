@@ -7,25 +7,6 @@ Network::Network() : ServerMessage("NETWORK")
     debitRecu = 1.2;
 }
 
-double Network::getDebitEnvoi() const
-{
-    return debitEnvoi;
-}
-
-void Network::setDebitEnvoi(double value)
-{
-    debitEnvoi = value;
-}
-
-double Network::getDebitRecu() const
-{
-    return debitRecu;
-}
-
-void Network::setDebitRecu(double value)
-{
-    debitRecu = value;
-}
 
 void Network::read(const QJsonObject &json)
 {

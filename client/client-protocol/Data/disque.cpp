@@ -9,46 +9,6 @@ Disque::Disque() : ServerMessage("DISK")
 
 }
 
-QString Disque::getNom() const
-{
-    return nom;
-}
-
-void Disque::setNom(const QString &value)
-{
-    nom = value;
-}
-
-double Disque::getCapaciteUtiliser() const
-{
-    return capaciteUtiliser;
-}
-
-void Disque::setCapaciteUtiliser(double value)
-{
-    capaciteUtiliser = value;
-}
-
-double Disque::getCapaciteLibre() const
-{
-    return capaciteLibre;
-}
-
-void Disque::setCapaciteLibre(double value)
-{
-    capaciteLibre = value;
-}
-
-double Disque::getMemoireMax() const
-{
-    return memoireMax;
-}
-
-void Disque::setMemoireMax(double value)
-{
-    memoireMax = value;
-}
-
 void Disque::read(const QJsonObject &json)
 {
     type = json["type"].toString();
