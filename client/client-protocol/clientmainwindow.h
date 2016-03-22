@@ -3,7 +3,6 @@
 
 #include <QtWidgets>
 #include <QtNetwork>
-#include "ui_FenClient.h"
 
 #include "Data/processus.h"
 #include "Data/cpu.h"
@@ -12,13 +11,16 @@
 #include "Data/network.h"
 #include "Data/serveur.h"
 
+#include "client-gui/mainwindow.h"
 
-class FenClient : public QWidget, private Ui::FenClient
+
+class ClientMainWindow : public MainWindow
 {
     Q_OBJECT
 
     public:
-        FenClient();
+        ClientMainWindow();
+
         // fonction du traitement des messages
         void messageProcessing(QString message);
 

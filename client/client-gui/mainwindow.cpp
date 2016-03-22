@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
 MainWindow::MainWindow()
 {
@@ -12,7 +11,7 @@ MainWindow::MainWindow()
 
     // Signals
 
-    QObject::connect(_menuBar->actionQuit, SIGNAL(triggered(bool)), qApp, SLOT(quit()));
+    QObject::connect(_menuBar->actionQuit, SIGNAL(triggered(bool)), this, SLOT(quit()));
     QObject::connect(_menuBar->actionNewConnection, SIGNAL(triggered(bool)), this, SLOT(loginServerSlot()));
     QObject::connect(_menuBar->actionSettings, SIGNAL(triggered(bool)), this, SLOT(displaySettingsSlot()));
     QObject::connect(_menuBar->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutAppSlot()));
