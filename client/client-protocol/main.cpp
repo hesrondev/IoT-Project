@@ -1,9 +1,12 @@
-#include <QCoreApplication>
+#include <QApplication>
+#include "FenClient.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication app(argc, argv);
 
-    return a.exec();
+    FenClient fenetre;
+    fenetre.show();
+
+    return app.exec();
 }
-

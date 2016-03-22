@@ -21,9 +21,11 @@ MemoryTabDetails::MemoryTabDetails(QString title, QString subTitle, QString grap
 
     QLabel *usedLabel = new QLabel("En cours d'utilisation");
     QLabel *usedValueLabel = new QLabel("3,2 Go");
+    usedValueLabel->setObjectName("perf-value");
 
     QLabel *freeLabel = new QLabel("Disponible");
     QLabel *freeValueLabel = new QLabel("777 Mo");
+    freeValueLabel->setObjectName("perf-value");
 
     glayout->addWidget(usedLabel, 0, 0);
     glayout->addWidget(freeLabel, 0, 1);

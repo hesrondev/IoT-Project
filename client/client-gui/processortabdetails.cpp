@@ -6,25 +6,30 @@ ProcessorTabDetails::ProcessorTabDetails(QString title, QString subTitle, QStrin
     // labels
     QLabel *useLabel = new QLabel("Utilisation");
     QLabel *useValueLabel = new QLabel("17%");
+    useValueLabel->setObjectName("perf-value");
 
     QLabel *speedLabel = new QLabel("Vitesse");
     QLabel *speedValueLabel = new QLabel("1,50 Ghz");
+    speedValueLabel->setObjectName("perf-value");
 
     QLabel *processLabel = new QLabel("Processus");
     QLabel *processValueLabel = new QLabel("15");
+    processValueLabel->setObjectName("perf-value");
 
     QLabel *threadLabel = new QLabel("Threads");
     QLabel *threadValueLabel = new QLabel("90");
+    threadValueLabel->setObjectName("perf-value");
 
     QLabel *timeLabel = new QLabel("Durée de fonctionnement");
     QLabel *timeValueLabel = new QLabel("2:55:26:03");
+    timeValueLabel->setObjectName("perf-value");
 
     // Footer Widget
 
     QWidget *footerWidget = new QWidget();
     QHBoxLayout *footerHLayout = new QHBoxLayout();
     footerHLayout->setMargin(0);
-    footerHLayout->setSpacing(20);
+    footerHLayout->setSpacing(10);
     QGridLayout *footerGLayout = new QGridLayout();
     footerGLayout->setMargin(0);
     footerGLayout->setHorizontalSpacing(15);
@@ -64,8 +69,11 @@ ProcessorTabDetails::ProcessorTabDetails(QString title, QString subTitle, QStrin
     // spec labels
     QLabel *speedMaxLabel = new QLabel("Vitesse maximale:");
     QLabel *speedMaxValueLabel = new QLabel("3,40 GHz");
+    speedMaxValueLabel->setObjectName("perf-value-small");
+
     QLabel *coreLabel = new QLabel("Coeurs:");
     QLabel *coreValueLabel = new QLabel("4");
+    coreValueLabel->setObjectName("perf-value-small");
 
     specGLayout->addWidget(speedMaxLabel, 0, 0);
     specGLayout->addWidget(speedMaxValueLabel, 0, 1);

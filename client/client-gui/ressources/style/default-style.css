@@ -141,3 +141,25 @@ QLabel#perf-graph-legend {
 QGroupBox#perf-graph {
     border: 1px solid #C2C7CB;
 }
+
+QLabel#perf-value {
+    font-size: 14pt;
+    color: #3c4a73;
+}
+
+QLabel#perf-value-small {
+    font-size: 11pt;
+    color: #383737;
+}
+
+
+/* ***** LOGIN VIEW ****** */
+
+QLineEdit {
+    
+    background: #fff;
+    border: 1px solid #C2C7CB;
+    border-radius: 3px;
+    height: 22px;
+    
+}

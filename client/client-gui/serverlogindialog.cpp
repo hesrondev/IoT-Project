@@ -7,7 +7,7 @@ ServerLoginDialog::ServerLoginDialog()
     setModal(true);
     setWindowTitle("Connexion au serveur");
     setWindowIcon(QIcon(":icons/server"));
-
+    resize(230, 250);
     // Initializations
 
     QLabel *addressLabel = new QLabel("Addresse du serveur");
@@ -22,6 +22,8 @@ ServerLoginDialog::ServerLoginDialog()
 
     cancelBtn = new QPushButton("Annuler");
     validBtn = new QPushButton("Valider");
+    cancelBtn->setMinimumHeight(25);
+    validBtn->setMinimumHeight(25);
 
     // Layout
 
@@ -39,6 +41,7 @@ ServerLoginDialog::ServerLoginDialog()
     // GroupLayout
 
     QGroupBox *groupbox = new QGroupBox();
+    groupbox->setMinimumSize(200, 150);
     groupbox->setLayout(glayout);
 
 

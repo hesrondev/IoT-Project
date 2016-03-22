@@ -7,8 +7,11 @@ NetworkTabDetails::NetworkTabDetails(QString title, QString subTitle, QString gr
     //
     QLabel *dataInLabel = new QLabel("Recevoir");
     QLabel *dataInValueLabel = new QLabel("566 bits/s");
+    dataInValueLabel->setObjectName("perf-value");
+
     QLabel *dataOutLabel = new QLabel("Envoyer");
     QLabel *dataOutValueLabel = new QLabel("126 bits/s");
+    dataOutValueLabel->setObjectName("perf-value");
 
     // Spec
 
@@ -16,7 +19,8 @@ NetworkTabDetails::NetworkTabDetails(QString title, QString subTitle, QString gr
     QLabel *ipv6Label = new QLabel("Adresse IPv6:");
     QLabel *ipv4ValueLabel = new QLabel("196.3.65.2");
     QLabel *ipv6ValueLabel = new QLabel("2001:0db8:0000:85a3:0000:0000:ac1f:8001:");
-
+    ipv4ValueLabel->setObjectName("perf-value-small");
+    ipv6ValueLabel->setObjectName("perf-value-small");
     // layering specifications
 
     QGridLayout *glayout = new QGridLayout();
