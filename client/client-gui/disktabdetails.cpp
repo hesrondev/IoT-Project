@@ -20,3 +20,8 @@ DiskTabDetails::DiskTabDetails(QString title, QString subTitle, QString graphLeg
     vlayout->addWidget(devicesGBox);
     vlayout->addStretch(1);
 }
+
+void DiskTabDetails::updateData(const QString &nom, const QString &cpUsed, const QString &cpFree, const QString &cpMax)
+{
+    subTitleLabel->setText(nom);
+}

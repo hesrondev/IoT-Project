@@ -11,10 +11,11 @@ MainWindow::MainWindow()
 
     // Signals
 
-    QObject::connect(_menuBar->actionQuit, SIGNAL(triggered(bool)), this, SLOT(quit()));
-    QObject::connect(_menuBar->actionNewConnection, SIGNAL(triggered(bool)), this, SLOT(loginServerSlot()));
-    QObject::connect(_menuBar->actionSettings, SIGNAL(triggered(bool)), this, SLOT(displaySettingsSlot()));
-    QObject::connect(_menuBar->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutAppSlot()));
+    connect(_menuBar->actionQuit, SIGNAL(triggered(bool)), this, SLOT(close()));
+    connect(_menuBar->actionNewConnection, SIGNAL(triggered(bool)), this, SLOT(loginServerSlot()));
+    connect(_menuBar->actionSettings, SIGNAL(triggered(bool)), this, SLOT(displaySettingsSlot()));
+    connect(_menuBar->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutAppSlot()));
+
 }
 
 // Initialisation des widgets
@@ -32,6 +33,26 @@ void MainWindow::initWidgets()
     setCentralWidget(_centralWidget);
 
     _centralWidget->setObjectName("central-widget");
+
+    // footer widget
+
+    _statusBar = new QStatusBar();
+    _statusBar->setFixedHeight(40);
+
+    setStatusBar(_statusBar);
+
+
+    // logins server
+
+    serverLogin = new ServerLoginDialog();
+}
+
+
+// Affichage d'un statut
+
+void MainWindow::displayStatus(const QString &message)
+{
+    _statusBar->showMessage(message, 2000);
 }
 
 
@@ -40,11 +61,10 @@ void MainWindow::initWidgets()
  */
 
 void MainWindow::loginServerSlot()
-{
-    ServerLoginDialog *serverLogin = new ServerLoginDialog();
-
+{    
     serverLogin->show();
 }
+
 
 void MainWindow::displaySettingsSlot()
 {

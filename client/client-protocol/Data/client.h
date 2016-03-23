@@ -25,6 +25,9 @@ public:
     int getIdConnexion() const;
     void setIdConnexion(int value);
 
+    QString getNom() const;
+    void setNom(const QString &value);
+
 private:
     QTcpSocket* socket;
 

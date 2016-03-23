@@ -25,7 +25,7 @@ class ClientMainWindow : public MainWindow
         void messageProcessing(QString message);
 
     private slots:
-        void on_boutonConnexion_clicked();
+        void on_boutonConnexion_clicked(const QString &ip, const QString &port, const QString &clientName, const QString &mdp);
         void on_boutonEnvoyer_clicked();
         void on_message_returnPressed();
         void donneesRecues();
@@ -38,6 +38,7 @@ class ClientMainWindow : public MainWindow
         quint16 tailleMessage;
 
         // Composants de la VM
+        Client client;
         Processus process;
         Cpu cpu;
         Ram ram;

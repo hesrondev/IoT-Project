@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ClientMainWindow_t {
-    QByteArrayData data[11];
-    char stringdata0[178];
+    QByteArrayData data[15];
+    char stringdata0[201];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,18 +32,23 @@ static const qt_meta_stringdata_ClientMainWindow_t qt_meta_stringdata_ClientMain
 QT_MOC_LITERAL(0, 0, 16), // "ClientMainWindow"
 QT_MOC_LITERAL(1, 17, 26), // "on_boutonConnexion_clicked"
 QT_MOC_LITERAL(2, 44, 0), // ""
-QT_MOC_LITERAL(3, 45, 24), // "on_boutonEnvoyer_clicked"
-QT_MOC_LITERAL(4, 70, 24), // "on_message_returnPressed"
-QT_MOC_LITERAL(5, 95, 13), // "donneesRecues"
-QT_MOC_LITERAL(6, 109, 8), // "connecte"
-QT_MOC_LITERAL(7, 118, 10), // "deconnecte"
-QT_MOC_LITERAL(8, 129, 12), // "erreurSocket"
-QT_MOC_LITERAL(9, 142, 28), // "QAbstractSocket::SocketError"
-QT_MOC_LITERAL(10, 171, 6) // "erreur"
+QT_MOC_LITERAL(3, 45, 2), // "ip"
+QT_MOC_LITERAL(4, 48, 4), // "port"
+QT_MOC_LITERAL(5, 53, 10), // "clientName"
+QT_MOC_LITERAL(6, 64, 3), // "mdp"
+QT_MOC_LITERAL(7, 68, 24), // "on_boutonEnvoyer_clicked"
+QT_MOC_LITERAL(8, 93, 24), // "on_message_returnPressed"
+QT_MOC_LITERAL(9, 118, 13), // "donneesRecues"
+QT_MOC_LITERAL(10, 132, 8), // "connecte"
+QT_MOC_LITERAL(11, 141, 10), // "deconnecte"
+QT_MOC_LITERAL(12, 152, 12), // "erreurSocket"
+QT_MOC_LITERAL(13, 165, 28), // "QAbstractSocket::SocketError"
+QT_MOC_LITERAL(14, 194, 6) // "erreur"
 
     },
     "ClientMainWindow\0on_boutonConnexion_clicked\0"
-    "\0on_boutonEnvoyer_clicked\0"
+    "\0ip\0port\0clientName\0mdp\0"
+    "on_boutonEnvoyer_clicked\0"
     "on_message_returnPressed\0donneesRecues\0"
     "connecte\0deconnecte\0erreurSocket\0"
     "QAbstractSocket::SocketError\0erreur"
@@ -64,22 +69,22 @@ static const uint qt_meta_data_ClientMainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x08 /* Private */,
-       3,    0,   50,    2, 0x08 /* Private */,
-       4,    0,   51,    2, 0x08 /* Private */,
-       5,    0,   52,    2, 0x08 /* Private */,
-       6,    0,   53,    2, 0x08 /* Private */,
-       7,    0,   54,    2, 0x08 /* Private */,
-       8,    1,   55,    2, 0x08 /* Private */,
+       1,    4,   49,    2, 0x08 /* Private */,
+       7,    0,   58,    2, 0x08 /* Private */,
+       8,    0,   59,    2, 0x08 /* Private */,
+       9,    0,   60,    2, 0x08 /* Private */,
+      10,    0,   61,    2, 0x08 /* Private */,
+      11,    0,   62,    2, 0x08 /* Private */,
+      12,    1,   63,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,    6,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 9,   10,
+    QMetaType::Void, 0x80000000 | 13,   14,
 
        0        // eod
 };
@@ -90,7 +95,7 @@ void ClientMainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         ClientMainWindow *_t = static_cast<ClientMainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_boutonConnexion_clicked(); break;
+        case 0: _t->on_boutonConnexion_clicked((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4]))); break;
         case 1: _t->on_boutonEnvoyer_clicked(); break;
         case 2: _t->on_message_returnPressed(); break;
         case 3: _t->donneesRecues(); break;

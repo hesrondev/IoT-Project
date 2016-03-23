@@ -111,3 +111,25 @@ void PerformanceTab::setNetworkDetails()
     resetVLayout();
     vlayout->addWidget(networkDetails);
 }
+
+// Getters
+
+NetworkTabDetails *PerformanceTab::getNetworkDetails() const
+{
+    return networkDetails;
+}
+
+DiskTabDetails *PerformanceTab::getDiskDetails() const
+{
+    return diskDetails;
+}
+
+MemoryTabDetails *PerformanceTab::getMemoryDetails() const
+{
+    return memoryDetails;
+}
+
+ProcessorTabDetails *PerformanceTab::getProcessorDetails() const
+{
+    return processorDetails;
+}

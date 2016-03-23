@@ -16,6 +16,8 @@ void Disque::read(const QJsonObject &json)
     capaciteUtiliser = json["capaciteUtiliser"].toDouble();
     capaciteLibre  = json["capaciteLibre"].toDouble();
     memoireMax = json["memoireMax"].toDouble();;
+
+    updateObserver();
 }
 
 void Disque::write(QJsonObject &json) const
@@ -25,5 +27,18 @@ void Disque::write(QJsonObject &json) const
     json["capaciteUtiliser"] = capaciteUtiliser;
     json["capaciteLibre"] = capaciteLibre;
     json["memoireMax"] = memoireMax;
+}
+
+void Disque::updateObserver()
+{
+
+    if (observer != NULL)
+    {
+        QString cpUsed = QString::number(capaciteUtiliser) + " Go";
+        QString cpFree = QString::number(capaciteLibre) + " Go";
+        QString cpMax = QString::number(memoireMax) + " Go";
+
+        ((DiskTabDetails*)observer)->updateData(nom, cpUsed, cpFree, cpMax);
+    }
 }
 

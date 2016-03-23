@@ -4,11 +4,11 @@
 Processus::Processus() : ServerMessage("PROCESS")
 {
      nom ="processus1";
-     pid =1;
+     pid = (int)rand() / RAND_MAX;
      status=true;
      utilisateur="user1";
-     uid =1;
-     taille=1.2;
+     uid = (int)rand() / RAND_MAX;
+     taille = (double)rand() / RAND_MAX;
 }
 
 QString Processus::getNom() const

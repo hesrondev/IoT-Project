@@ -19,3 +19,23 @@ CentralWidget::CentralWidget()
 
 
 }
+
+ProcessTab *CentralWidget::processTab() const
+{
+    return _processTab;
+}
+
+PerformanceTab *CentralWidget::performanceTab() const
+{
+    return _performanceTab;
+}
+
+AppHistoryTab *CentralWidget::apphistoryTab() const
+{
+    return _apphistoryTab;
+}
+
+ServerTab *CentralWidget::serverTab() const
+{
+    return _serverTab;
+}

@@ -11,8 +11,18 @@
 
 class ServerLoginDialog : public QDialog
 {
+    Q_OBJECT
+
+    friend class MainWindow;
+
 public:
     ServerLoginDialog();
+
+public slots:
+    void validBtnClicked();
+
+signals:
+    void serverConnectionSignal(const QString &ip, const QString &port, const QString &clientName, const QString &mdp);
 
 private:
 
@@ -20,6 +30,7 @@ private:
     QPushButton *validBtn;
     QLineEdit *addressLE;
     QLineEdit *portLE;
+    QLineEdit *nameLE;
     QLineEdit *passwordLE;
     QCheckBox *rememberCBox;
 

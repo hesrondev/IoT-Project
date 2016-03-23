@@ -20,10 +20,16 @@ public:
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
 
+    void setIpv4(const QString &value);
+
+    void setIpv6(const QString &value);
+
 private:
     QString nom;
     double debitEnvoi;
     double debitRecu;
+    QString ipv4;
+    QString ipv6;
 
 };
 

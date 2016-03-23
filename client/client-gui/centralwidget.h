@@ -13,6 +13,14 @@ class CentralWidget : public QTabWidget
 public:
     CentralWidget();
 
+    ProcessTab *processTab() const;
+
+    PerformanceTab *performanceTab() const;
+
+    AppHistoryTab *apphistoryTab() const;
+
+    ServerTab *serverTab() const;
+
 private:
 
     ProcessTab *_processTab;

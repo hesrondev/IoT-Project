@@ -39,7 +39,8 @@ SOURCES +=\
     client-protocol/Data/servermessage.cpp \
     client-protocol/Data/serveur.cpp \
     client-protocol/main.cpp \
-    client-protocol/clientmainwindow.cpp
+    client-protocol/clientmainwindow.cpp \
+    client-gui/observer.cpp
 
 
 HEADERS  += \
@@ -68,7 +69,8 @@ HEADERS  += \
     client-protocol/Data/ram.h \
     client-protocol/Data/serverMessage.h \
     client-protocol/Data/serveur.h \
-    client-protocol/clientmainwindow.h
+    client-protocol/clientmainwindow.h \
+    client-gui/observer.h
 
 RESOURCES += \
     ressources/ressources.qrc

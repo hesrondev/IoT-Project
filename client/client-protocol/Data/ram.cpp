@@ -15,6 +15,8 @@ void Ram::read(const QJsonObject &json)
     capacite = json["capacite"].toDouble();
     utiliser = json["utilise"].toDouble();
     disponible= json["disponible"].toDouble();
+
+    updateObserver();
 }
 
 void Ram::write(QJsonObject &json) const
@@ -24,5 +26,21 @@ void Ram::write(QJsonObject &json) const
     json["capacite"] = capacite;
     json["utilise"] = utiliser;
     json["disponible"] = disponible;
+}
+
+void Ram::updateObserver()
+{
+
+        if (observer != NULL)
+        {
+            QString cp = QString::number(utiliser) + " Mo";
+            QString cpFree = QString::number(disponible) + " Mo";
+            QString cpMax = QString::number(capacite) + " Mo";
+
+            int per = (int) ((utiliser * 100) / capacite);
+
+            ((MemoryTabDetails*)observer)->updateData(nom, cp, cpFree, cpMax, per);
+        }
+
 }
 

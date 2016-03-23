@@ -3,29 +3,12 @@
 Network::Network() : ServerMessage("NETWORK")
 {
     nom = "network";
-    debitEnvoi = 1.1;
-    debitRecu = 1.2;
+    debitEnvoi = (double)rand() / RAND_MAX;
+    debitRecu = (double)rand() / RAND_MAX;
+    ipv4 = "0.0.0.0";
+    ipv6 = "XXX-ipv6-XXX";
 }
 
-double Network::getDebitEnvoi() const
-{
-    return debitEnvoi;
-}
-
-void Network::setDebitEnvoi(double value)
-{
-    debitEnvoi = value;
-}
-
-double Network::getDebitRecu() const
-{
-    return debitRecu;
-}
-
-void Network::setDebitRecu(double value)
-{
-    debitRecu = value;
-}
 
 void Network::read(const QJsonObject &json)
 {
@@ -33,6 +16,8 @@ void Network::read(const QJsonObject &json)
     nom = json["nom"].toString();
     debitEnvoi = json["debitEnvoi"].toDouble();
     debitRecu = json["debitRecu"].toDouble();
+    ipv4 = json["ipv4"].toString();
+    ipv6 = json["ipv6"].toString();
 }
 
 void Network::write(QJsonObject &json) const
@@ -41,5 +26,16 @@ void Network::write(QJsonObject &json) const
     json["nom"] = nom;
     json["debitEnvoi"] = debitEnvoi;
     json["debitRecu"] = debitRecu;
+    json["ipv4"] = ipv4;
+    json["ipv6"] = ipv6;
 }
 
+void Network::setIpv4(const QString &value)
+{
+    ipv4 = value;
+}
+
+void Network::setIpv6(const QString &value)
+{
+    ipv6 = value;
+}

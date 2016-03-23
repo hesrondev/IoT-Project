@@ -26,8 +26,10 @@ INPUT(
 ./debug\serveur.o
 ./debug\main.o
 ./debug\clientmainwindow.o
+./debug\observer.o
 ./debug\qrc_ressources.o
 ./debug\moc_mainwindow.o
 ./debug\moc_performancetab.o
+./debug\moc_serverlogindialog.o
 ./debug\moc_clientmainwindow.o
 );

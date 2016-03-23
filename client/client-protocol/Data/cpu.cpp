@@ -23,6 +23,8 @@ void Cpu::read(const QJsonObject &json)
     nombreCoeurs= json["nombreCoeurs"].toInt();
     nombreProcessus=json["nombreProcessus"].toInt();
     nombreThreads= json["nombreThreads"].toInt();
+
+    updateObserver();
 }
 // methode json write
 void Cpu::write(QJsonObject &json) const
@@ -35,5 +37,22 @@ void Cpu::write(QJsonObject &json) const
     json["nombreCoeurs"]= nombreCoeurs;
     json["nombreProcessus"]= nombreProcessus;
     json["nombreThreads"]= nombreThreads;
+}
+
+// Mise à jour de l'observer
+
+void Cpu::updateObserver()
+{
+    if (observer != NULL)
+    {
+        QString tU = QString::number(tauxUtilisation) + " %";
+        QString speed = QString::number(vitesse) + " GHz";
+        QString maxSpeed = QString::number(vitesseMax) + " GHz";
+        QString cores = QString::number(nombreCoeurs);
+        QString processes = QString::number(nombreProcessus);
+        QString threads = QString::number(nombreThreads);
+
+        ((ProcessorTabDetails*)observer)->updateData(nom, tU, speed, maxSpeed, cores, processes, threads);
+    }
 }
 

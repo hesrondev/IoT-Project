@@ -3,9 +3,9 @@
 Ram::Ram() : ServerMessage("RAM")
 {
     nom = "Mémoire RAM";
-    capacite =1.2;
-    utiliser=1.3;
-    disponible=2.5;
+    capacite = (double)rand() / RAND_MAX;
+    utiliser = (double)rand() / RAND_MAX;
+    disponible = (double)rand() / RAND_MAX;
 }
 
 double Ram::getCapacite() const

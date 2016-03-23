@@ -16,11 +16,11 @@ Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::curre
     // timers, nombre de fois par seconde
 
     processFq = 1;
-    cpuFq = 2;
-    ramFq = 3;
-    diskFq = 4;
-    networkFq = 5;
-    serverFq = 2;
+    cpuFq = 1;
+    ramFq = 1;
+    diskFq = 1;
+    networkFq = 1;
+    serverFq = 1;
 
     processTimer = new QTimer();
     cpuTimer = new QTimer();
@@ -95,4 +95,14 @@ int Client::getIdConnexion() const
 void Client::setIdConnexion(int value)
 {
     IdConnexion = value;
+}
+
+QString Client::getNom() const
+{
+    return nom;
+}
+
+void Client::setNom(const QString &value)
+{
+    nom = value;
 }

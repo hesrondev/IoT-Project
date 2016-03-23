@@ -84,6 +84,7 @@ void FenServeur::nouvelleConnexion()
     QTcpSocket * socketClient= serveur->nextPendingConnection();
 
     Client *nouveauClient = new Client(clients.size() + 1, socketClient);
+
     //conserve la liste des clients connectés
     clients << nouveauClient;
 
@@ -134,7 +135,10 @@ void FenServeur::donneesRecues(){
     QString message;
     in >> message;
 
-
+    /// RECEPTION MESSAGE CLIENT
+    /// TRAITEMENT
+    /// MODIFICATION DU CLIENT CONCERNE
+    ///
     // 2 : on renvoie le message à tous les clients
     envoyerATous(message);
 
@@ -239,6 +243,10 @@ void FenServeur::sendDiskData()
 void FenServeur::sendNetworkData()
 {
     Network sm;
+
+    //sm.setIpv4(ipv4);
+    //sm.setIpv6(ipv6);
+
     QJsonObject  js ;
     sm.write(js);
 
@@ -255,6 +263,8 @@ void FenServeur::sendNetworkData()
 void FenServeur::sendServerData()
 {
     Serveur sm(clients);
+    //sm.setIp(serveur->serverAddress().toString());  // MAJ de l'adresse du serveur
+
     QJsonObject  js ;
     sm.write(js);
 

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStatusBar>
 
 #include "menubar.h"
 #include "centralwidget.h"
@@ -23,6 +24,8 @@ public:
 
     void initWidgets();
 
+    void displayStatus(const QString &message);
+
     ~MainWindow();
 
 public slots:
@@ -30,10 +33,13 @@ public slots:
     void displaySettingsSlot();
     void aboutAppSlot();
 
-private:
+protected:
 
     MenuBar *_menuBar;
     CentralWidget *_centralWidget;
+    QStatusBar *_statusBar;
+
+    ServerLoginDialog *serverLogin;
 };
 
 #endif // MAINWINDOW_H

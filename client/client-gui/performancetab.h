@@ -25,6 +25,17 @@ public:
 
     void resetVLayout();
 
+
+    // Getters
+
+    ProcessorTabDetails *getProcessorDetails() const;
+
+    MemoryTabDetails *getMemoryDetails() const;
+
+    DiskTabDetails *getDiskDetails() const;
+
+    NetworkTabDetails *getNetworkDetails() const;
+
 public slots:
     void setProcessorDetails();
     void setMemoryDetails();

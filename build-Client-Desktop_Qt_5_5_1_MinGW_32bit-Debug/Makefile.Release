@@ -69,9 +69,11 @@ SOURCES       = ..\client\client-gui\aboutappdialog.cpp \
 		..\client\client-protocol\Data\servermessage.cpp \
 		..\client\client-protocol\Data\serveur.cpp \
 		..\client\client-protocol\main.cpp \
-		..\client\client-protocol\clientmainwindow.cpp release\qrc_ressources.cpp \
+		..\client\client-protocol\clientmainwindow.cpp \
+		..\client\client-gui\observer.cpp release\qrc_ressources.cpp \
 		release\moc_mainwindow.cpp \
 		release\moc_performancetab.cpp \
+		release\moc_serverlogindialog.cpp \
 		release\moc_clientmainwindow.cpp
 OBJECTS       = release/aboutappdialog.o \
 		release/apphistorytab.o \
@@ -100,9 +102,11 @@ OBJECTS       = release/aboutappdialog.o \
 		release/serveur.o \
 		release/main.o \
 		release/clientmainwindow.o \
+		release/observer.o \
 		release/qrc_ressources.o \
 		release/moc_mainwindow.o \
 		release/moc_performancetab.o \
+		release/moc_serverlogindialog.o \
 		release/moc_clientmainwindow.o
 
 DIST          =  ..\client\client-gui\aboutappdialog.h \
@@ -130,7 +134,8 @@ DIST          =  ..\client\client-gui\aboutappdialog.h \
 		..\client\client-protocol\Data\ram.h \
 		..\client\client-protocol\Data\serverMessage.h \
 		..\client\client-protocol\Data\serveur.h \
-		..\client\client-protocol\clientmainwindow.h ..\client\client-gui\aboutappdialog.cpp \
+		..\client\client-protocol\clientmainwindow.h \
+		..\client\client-gui\observer.h ..\client\client-gui\aboutappdialog.cpp \
 		..\client\client-gui\apphistorytab.cpp \
 		..\client\client-gui\centralwidget.cpp \
 		..\client\client-gui\devicecustombutton.cpp \
@@ -156,7 +161,8 @@ DIST          =  ..\client\client-gui\aboutappdialog.h \
 		..\client\client-protocol\Data\servermessage.cpp \
 		..\client\client-protocol\Data\serveur.cpp \
 		..\client\client-protocol\main.cpp \
-		..\client\client-protocol\clientmainwindow.cpp
+		..\client\client-protocol\clientmainwindow.cpp \
+		..\client\client-gui\observer.cpp
 QMAKE_TARGET  = ClientController
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = ClientController.exe
@@ -195,7 +201,7 @@ dist:
 	$(ZIP) ClientController.zip $(SOURCES) $(DIST) ..\client\Client.pro C:\Qt\5.5\mingw492_32\mkspecs\features\spec_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\qdevice.pri C:\Qt\5.5\mingw492_32\mkspecs\features\device_config.prf C:\Qt\5.5\mingw492_32\mkspecs\qconfig.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcollision.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcollision_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_core.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_help.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_location.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_network.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_script.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.5\mingw492_32\mkspecs\features\qt_functions.prf C:\Qt\5.5\mingw492_32\mkspecs\features\qt_config.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\qt_config.prf C:\Qt\5.5\mingw492_32\mkspecs\win32-g++\qmake.conf C:\Qt\5.5\mingw492_32\mkspecs\features\spec_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exclusive_builds.prf C:\Qt\5.5\mingw492_32\mkspecs\features\default_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\default_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\features\resolve_config.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\default_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\build_pass.prf C:\Qt\5.5\mingw492_32\mkspecs\features\qml_debug.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\rtti.prf C:\Qt\5.5\mingw492_32\mkspecs\features\precompile_header.prf C:\Qt\5.5\mingw492_32\mkspecs\features\warn_on.prf C:\Qt\5.5\mingw492_32\mkspecs\features\qt.prf C:\Qt\5.5\mingw492_32\mkspecs\features\resources.prf C:\Qt\5.5\mingw492_32\mkspecs\features\moc.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\opengl.prf C:\Qt\5.5\mingw492_32\mkspecs\features\uic.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\windows.prf C:\Qt\5.5\mingw492_32\mkspecs\features\testcase_targets.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exceptions.prf C:\Qt\5.5\mingw492_32\mkspecs\features\yacc.prf C:\Qt\5.5\mingw492_32\mkspecs\features\lex.prf ..\client\Client.pro ..\client\ressources\ressources.qrc C:/Qt/5.5/mingw492_32/lib/qtmain.prl C:/Qt/5.5/mingw492_32/lib/Qt5Widgets.prl C:/Qt/5.5/mingw492_32/lib/Qt5Gui.prl C:/Qt/5.5/mingw492_32/lib/Qt5Network.prl C:/Qt/5.5/mingw492_32/lib/Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\aboutappdialog.o release\apphistorytab.o release\centralwidget.o release\devicecustombutton.o release\disktabdetails.o release\displaysettingsdialog.o release\mainwindow.o release\memorytabdetails.o release\menubar.o release\networktabdetails.o release\performancecustombutton.o release\performancegraph.o release\performancetab.o release\processortabdetails.o release\processtab.o release\serverlogindialog.o release\servertab.o release\client.o release\cpu.o release\disque.o release\network.o release\processus.o release\ram.o release\servermessage.o release\serveur.o release\main.o release\clientmainwindow.o release\qrc_ressources.o release\moc_mainwindow.o release\moc_performancetab.o release\moc_clientmainwindow.o
+	-$(DEL_FILE) release\aboutappdialog.o release\apphistorytab.o release\centralwidget.o release\devicecustombutton.o release\disktabdetails.o release\displaysettingsdialog.o release\mainwindow.o release\memorytabdetails.o release\menubar.o release\networktabdetails.o release\performancecustombutton.o release\performancegraph.o release\performancetab.o release\processortabdetails.o release\processtab.o release\serverlogindialog.o release\servertab.o release\client.o release\cpu.o release\disque.o release\network.o release\processus.o release\ram.o release\servermessage.o release\serveur.o release\main.o release\clientmainwindow.o release\observer.o release\qrc_ressources.o release\moc_mainwindow.o release\moc_performancetab.o release\moc_serverlogindialog.o release\moc_clientmainwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -228,9 +234,9 @@ release/qrc_ressources.cpp: ../client/ressources/ressources.qrc \
 		../client/ressources/icons/memory_50.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name ressources ..\client\ressources\ressources.qrc -o release\qrc_ressources.cpp
 
-compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_performancetab.cpp release/moc_clientmainwindow.cpp
+compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_performancetab.cpp release/moc_serverlogindialog.cpp release/moc_clientmainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_performancetab.cpp release\moc_clientmainwindow.cpp
+	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_performancetab.cpp release\moc_serverlogindialog.cpp release\moc_clientmainwindow.cpp
 release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
@@ -336,6 +342,8 @@ release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow 
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstatusbar.h \
 		../client/client-gui/menubar.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmenubar.h \
@@ -389,6 +397,7 @@ release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow 
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
 		../client/client-gui/processortabdetails.h \
 		../client/client-gui/performancegraph.h \
+		../client/client-gui/observer.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qprogressbar.h \
@@ -538,6 +547,7 @@ release/moc_performancetab.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget 
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
 		../client/client-gui/processortabdetails.h \
 		../client/client-gui/performancegraph.h \
+		../client/client-gui/observer.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qprogressbar.h \
@@ -546,6 +556,134 @@ release/moc_performancetab.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget 
 		../client/client-gui/networktabdetails.h \
 		../client/client-gui/performancetab.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -ID:/Developpement/Qt/IoT/IoT-Project/client -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtNetwork -IC:/Qt/5.5/mingw492_32/include/QtCore -I. ..\client\client-gui\performancetab.h -o release\moc_performancetab.cpp
+
+release/moc_serverlogindialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlogging.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qflags.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstring.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qchar.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qregion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qimage.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qfont.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qevent.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpen.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QCheckBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
+		../client/client-gui/serverlogindialog.h
+	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -ID:/Developpement/Qt/IoT/IoT-Project/client -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtNetwork -IC:/Qt/5.5/mingw492_32/include/QtCore -I. ..\client\client-gui\serverlogindialog.h -o release\moc_serverlogindialog.cpp
 
 release/moc_clientmainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QtWidgets \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QtWidgetsDepends \
@@ -1044,7 +1182,13 @@ release/moc_clientmainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QtWidg
 		../client/client-protocol/Data/processus.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QJsonObject \
 		../client/client-protocol/Data/serverMessage.h \
+		../client/client-gui/observer.h \
 		../client/client-protocol/Data/cpu.h \
+		../client/client-gui/processortabdetails.h \
+		../client/client-gui/performancegraph.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		../client/client-protocol/Data/ram.h \
 		../client/client-protocol/Data/disque.h \
 		../client/client-protocol/Data/network.h \
@@ -1054,6 +1198,7 @@ release/moc_clientmainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QtWidg
 		C:/Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../client/client-gui/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
 		../client/client-gui/menubar.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
@@ -1062,19 +1207,14 @@ release/moc_clientmainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QtWidg
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QTabWidget \
 		../client/client-gui/processtab.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QTableWidget \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QToolBar \
 		../client/client-gui/performancetab.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		../client/client-gui/performancecustombutton.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
-		../client/client-gui/processortabdetails.h \
-		../client/client-gui/performancegraph.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		../client/client-gui/disktabdetails.h \
@@ -1515,6 +1655,7 @@ release/centralwidget.o: ../client/client-gui/centralwidget.cpp ../client/client
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
 		../client/client-gui/processortabdetails.h \
 		../client/client-gui/performancegraph.h \
+		../client/client-gui/observer.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qprogressbar.h \
@@ -2006,6 +2147,8 @@ release/mainwindow.o: ../client/client-gui/mainwindow.cpp ../client/client-gui/m
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstatusbar.h \
 		../client/client-gui/menubar.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmenubar.h \
@@ -2059,6 +2202,7 @@ release/mainwindow.o: ../client/client-gui/mainwindow.cpp ../client/client-gui/m
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
 		../client/client-gui/processortabdetails.h \
 		../client/client-gui/performancegraph.h \
+		../client/client-gui/observer.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qprogressbar.h \
@@ -2787,6 +2931,7 @@ release/performancetab.o: ../client/client-gui/performancetab.cpp ../client/clie
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
 		../client/client-gui/processortabdetails.h \
 		../client/client-gui/performancegraph.h \
+		../client/client-gui/observer.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qprogressbar.h \
@@ -2908,7 +3053,8 @@ release/processortabdetails.o: ../client/client-gui/processortabdetails.cpp ../c
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		../client/client-gui/observer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\processortabdetails.o ..\client\client-gui\processortabdetails.cpp
 
 release/processtab.o: ../client/client-gui/processtab.cpp ../client/client-gui/processtab.h \
@@ -3591,7 +3737,85 @@ release/cpu.o: ../client/client-protocol/Data/cpu.cpp ../client/client-protocol/
 		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
 		../client/client-protocol/Data/serverMessage.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QString
+		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
+		../client/client-gui/observer.h \
+		../client/client-gui/processortabdetails.h \
+		../client/client-gui/performancegraph.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qbrush.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qregion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qimage.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qfont.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qevent.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\cpu.o ..\client\client-protocol\Data\cpu.cpp
 
 release/disque.o: ../client/client-protocol/Data/disque.cpp ../client/client-protocol/Data/disque.h \
@@ -3636,7 +3860,8 @@ release/disque.o: ../client/client-protocol/Data/disque.cpp ../client/client-pro
 		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
 		../client/client-protocol/Data/serverMessage.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QString
+		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
+		../client/client-gui/observer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\disque.o ..\client\client-protocol\Data\disque.cpp
 
 release/network.o: ../client/client-protocol/Data/network.cpp ../client/client-protocol/Data/network.h \
@@ -3681,7 +3906,8 @@ release/network.o: ../client/client-protocol/Data/network.cpp ../client/client-p
 		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
 		../client/client-protocol/Data/serverMessage.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QString
+		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
+		../client/client-gui/observer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\network.o ..\client\client-protocol\Data\network.cpp
 
 release/processus.o: ../client/client-protocol/Data/processus.cpp ../client/client-protocol/Data/processus.h \
@@ -3726,7 +3952,8 @@ release/processus.o: ../client/client-protocol/Data/processus.cpp ../client/clie
 		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
 		../client/client-protocol/Data/serverMessage.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QString
+		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
+		../client/client-gui/observer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\processus.o ..\client\client-protocol\Data\processus.cpp
 
 release/ram.o: ../client/client-protocol/Data/ram.cpp ../client/client-protocol/Data/ram.h \
@@ -3771,7 +3998,8 @@ release/ram.o: ../client/client-protocol/Data/ram.cpp ../client/client-protocol/
 		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
 		../client/client-protocol/Data/serverMessage.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QString
+		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
+		../client/client-gui/observer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\ram.o ..\client\client-protocol\Data\ram.cpp
 
 release/servermessage.o: ../client/client-protocol/Data/servermessage.cpp ../client/client-protocol/Data/serverMessage.h \
@@ -3810,7 +4038,8 @@ release/servermessage.o: ../client/client-protocol/Data/servermessage.cpp ../cli
 		C:/Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		../client/client-gui/observer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\servermessage.o ..\client\client-protocol\Data\servermessage.cpp
 
 release/serveur.o: ../client/client-protocol/Data/serveur.cpp ../client/client-protocol/Data/serveur.h \
@@ -4053,7 +4282,8 @@ release/serveur.o: ../client/client-protocol/Data/serveur.cpp ../client/client-p
 		C:/Qt/5.5/mingw492_32/include/QtNetwork/qtnetworkversion.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QDateTime \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QDate \
-		../client/client-protocol/Data/serverMessage.h
+		../client/client-protocol/Data/serverMessage.h \
+		../client/client-gui/observer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\serveur.o ..\client\client-protocol\Data\serveur.cpp
 
 release/main.o: ../client/client-protocol/main.cpp C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
@@ -4555,7 +4785,13 @@ release/main.o: ../client/client-protocol/main.cpp C:/Qt/5.5/mingw492_32/include
 		../client/client-protocol/Data/processus.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QJsonObject \
 		../client/client-protocol/Data/serverMessage.h \
+		../client/client-gui/observer.h \
 		../client/client-protocol/Data/cpu.h \
+		../client/client-gui/processortabdetails.h \
+		../client/client-gui/performancegraph.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		../client/client-protocol/Data/ram.h \
 		../client/client-protocol/Data/disque.h \
 		../client/client-protocol/Data/network.h \
@@ -4565,6 +4801,7 @@ release/main.o: ../client/client-protocol/main.cpp C:/Qt/5.5/mingw492_32/include
 		C:/Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../client/client-gui/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
 		../client/client-gui/menubar.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
@@ -4573,19 +4810,14 @@ release/main.o: ../client/client-protocol/main.cpp C:/Qt/5.5/mingw492_32/include
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QTabWidget \
 		../client/client-gui/processtab.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QTableWidget \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QToolBar \
 		../client/client-gui/performancetab.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		../client/client-gui/performancecustombutton.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
-		../client/client-gui/processortabdetails.h \
-		../client/client-gui/performancegraph.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		../client/client-gui/disktabdetails.h \
@@ -5101,7 +5333,13 @@ release/clientmainwindow.o: ../client/client-protocol/clientmainwindow.cpp ../cl
 		../client/client-protocol/Data/processus.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QJsonObject \
 		../client/client-protocol/Data/serverMessage.h \
+		../client/client-gui/observer.h \
 		../client/client-protocol/Data/cpu.h \
+		../client/client-gui/processortabdetails.h \
+		../client/client-gui/performancegraph.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		../client/client-protocol/Data/ram.h \
 		../client/client-protocol/Data/disque.h \
 		../client/client-protocol/Data/network.h \
@@ -5111,6 +5349,7 @@ release/clientmainwindow.o: ../client/client-protocol/clientmainwindow.cpp ../cl
 		C:/Qt/5.5/mingw492_32/include/QtCore/QDate \
 		../client/client-gui/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
 		../client/client-gui/menubar.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
@@ -5119,19 +5358,14 @@ release/clientmainwindow.o: ../client/client-protocol/clientmainwindow.cpp ../cl
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QTabWidget \
 		../client/client-gui/processtab.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QTableWidget \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QToolBar \
 		../client/client-gui/performancetab.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGridLayout \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
 		../client/client-gui/performancecustombutton.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/QPixmap \
-		../client/client-gui/processortabdetails.h \
-		../client/client-gui/performancegraph.h \
 		../client/client-gui/memorytabdetails.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QProgressBar \
 		../client/client-gui/disktabdetails.h \
@@ -5149,6 +5383,9 @@ release/clientmainwindow.o: ../client/client-protocol/clientmainwindow.cpp ../cl
 		C:/Qt/5.5/mingw492_32/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\clientmainwindow.o ..\client\client-protocol\clientmainwindow.cpp
 
+release/observer.o: ../client/client-gui/observer.cpp ../client/client-gui/observer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\observer.o ..\client\client-gui\observer.cpp
+
 release/qrc_ressources.o: release/qrc_ressources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_ressources.o release\qrc_ressources.cpp
 
@@ -5157,6 +5394,9 @@ release/moc_mainwindow.o: release/moc_mainwindow.cpp
 
 release/moc_performancetab.o: release/moc_performancetab.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_performancetab.o release\moc_performancetab.cpp
+
+release/moc_serverlogindialog.o: release/moc_serverlogindialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_serverlogindialog.o release\moc_serverlogindialog.cpp
 
 release/moc_clientmainwindow.o: release/moc_clientmainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_clientmainwindow.o release\moc_clientmainwindow.cpp

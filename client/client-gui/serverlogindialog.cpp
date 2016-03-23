@@ -12,11 +12,16 @@ ServerLoginDialog::ServerLoginDialog()
 
     QLabel *addressLabel = new QLabel("Addresse du serveur");
     QLabel *portLabel = new QLabel("Port :");
-    QLabel *passwordLabel = new QLabel("Mot de passe");
 
     addressLE = new QLineEdit();
+    addressLE->setText("localhost");
     portLE  = new QLineEdit();
+    portLE->setText("50885");
+
+    nameLE  = new QLineEdit();
+    nameLE->setPlaceholderText("Nom du client");
     passwordLE  = new QLineEdit();
+    passwordLE->setPlaceholderText("Mot de passe server");
     passwordLE->setEchoMode(QLineEdit::Password);
     rememberCBox = new QCheckBox("Retenir mon choix");
 
@@ -32,7 +37,7 @@ ServerLoginDialog::ServerLoginDialog()
     glayout->addWidget(portLabel, 0, 1);
     glayout->addWidget(addressLE, 1, 0);
     glayout->addWidget(portLE, 1, 1);
-    glayout->addWidget(passwordLabel, 2, 0, 1, 2);
+    glayout->addWidget(nameLE, 2, 0, 1, 2);
     glayout->addWidget(passwordLE, 3, 0, 1, 2);
     glayout->addWidget(rememberCBox, 4, 0);
     glayout->addWidget(validBtn, 5, 0);
@@ -49,4 +54,19 @@ ServerLoginDialog::ServerLoginDialog()
     hl->addWidget(groupbox, 0, Qt::AlignCenter);
 
     setLayout(hl);
+
+
+    // signals
+
+    connect(validBtn, SIGNAL(clicked(bool)), this, SLOT(validBtnClicked()));
+    connect(cancelBtn, SIGNAL(clicked(bool)), this, SLOT(close()));
+}
+
+
+// slots
+
+void ServerLoginDialog::validBtnClicked()
+{
+    hide();
+    emit serverConnectionSignal(addressLE->text(), portLE->text(), "client-name", passwordLE->text());
 }

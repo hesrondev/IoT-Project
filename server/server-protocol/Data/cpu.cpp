@@ -3,12 +3,12 @@
 Cpu::Cpu() : ServerMessage("CPU")
 {
      nom ="cpu";
-     tauxUtilisation =1;
-     vitesse=2;
-     vitesseMax=2.0;
-     nombreCoeurs=3;
-     nombreProcessus=4;
-     nombreThreads=7;
+     tauxUtilisation = (int)rand() / RAND_MAX;
+     vitesse = (double)rand() / RAND_MAX;
+     vitesseMax = (double)rand() / RAND_MAX;
+     nombreCoeurs = (int)rand() / RAND_MAX;
+     nombreProcessus = (int)rand() / RAND_MAX;
+     nombreThreads = (int)rand() / RAND_MAX;
 }
 
 
