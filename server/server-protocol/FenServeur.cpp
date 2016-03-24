@@ -184,6 +184,9 @@ void FenServeur::deconnexionClient()
 
     if (client != NULL)
     {
+        // ajout du client à la liste des anciens clients
+        oldClients.append(client);
+
         clients.removeOne(client);
         // Changer le statut du client
         client->disconnect();

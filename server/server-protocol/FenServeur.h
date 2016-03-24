@@ -59,6 +59,8 @@ signals:
         QTcpServer *serveurTcp;
       // liste des client
         QList<Client *> clients;
+      // liste des clients déconnectés
+        QList<Client *> oldClients;
        // la taille du message
         quint16 tailleMessage;
 
