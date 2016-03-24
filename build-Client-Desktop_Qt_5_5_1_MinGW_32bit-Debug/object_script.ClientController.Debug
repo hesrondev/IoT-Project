@@ -27,6 +27,9 @@ INPUT(
 ./debug\main.o
 ./debug\clientmainwindow.o
 ./debug\observer.o
+./debug\data.o
+./debug\disksactivity.o
+./debug\processesactivity.o
 ./debug\qrc_ressources.o
 ./debug\moc_displaysettingsdialog.o
 ./debug\moc_mainwindow.o

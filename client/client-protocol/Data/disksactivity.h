@@ -1,20 +1,20 @@
-#ifndef LISTPROCESSES_H
-#define LISTPROCESSES_H
-#include "processus.h"
+#ifndef LISTDISKS_H
+#define LISTDISKS_H
+#include "disque.h"
 #include <iostream>
 #include <QJsonObject>
 #include <QList>
 #include<QJsonArray>
-class ProcessesActivity
+class DisksActivity
 {
 public:
-    ProcessesActivity();
+    DisksActivity();
     void updateData();
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
-    ~ProcessesActivity();
+    ~DisksActivity();
 private:
     QString type;
-    QList <Processus *> processes;
+    QList <Disque> disks;
 };
-#endif // LISTPROCESSES_H
+#endif // LISTDISKS_H

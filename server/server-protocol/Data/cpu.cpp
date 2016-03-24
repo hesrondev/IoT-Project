@@ -1,6 +1,6 @@
 #include "cpu.h"
 
-Cpu::Cpu() : Component("CPU")
+Cpu::Cpu() : Component("cpu")
 {
      nom ="cpu";
      tauxUtilisation = (int)rand() / RAND_MAX;

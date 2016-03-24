@@ -1,6 +1,6 @@
 #include "network.h"
 
-Network::Network() : Component("NETWORK")
+Network::Network() : Component("network")
 {
     nom = "network";
     debitEnvoi = (double)rand() / RAND_MAX;

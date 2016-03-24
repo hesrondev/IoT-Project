@@ -40,7 +40,10 @@ SOURCES +=\
     client-protocol/Data/serveur.cpp \
     client-protocol/main.cpp \
     client-protocol/clientmainwindow.cpp \
-    client-gui/observer.cpp
+    client-gui/observer.cpp \
+    client-protocol/Data/data.cpp \
+    client-protocol/Data/disksactivity.cpp \
+    client-protocol/Data/processesactivity.cpp
 
 
 HEADERS  += \
@@ -70,7 +73,10 @@ HEADERS  += \
     client-protocol/Data/serverMessage.h \
     client-protocol/Data/serveur.h \
     client-protocol/clientmainwindow.h \
-    client-gui/observer.h
+    client-gui/observer.h \
+    client-protocol/Data/data.h \
+    client-protocol/Data/disksactivity.h \
+    client-protocol/Data/processesactivity.h
 
 RESOURCES += \
     ressources/ressources.qrc

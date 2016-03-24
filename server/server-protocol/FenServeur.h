@@ -15,6 +15,7 @@
 #include "Data/disksactivity.h"
 #include "Data/client.h"
 #include "Data/component.h"
+#include "Data/data.h"
 
 
 class FenServeur : public QWidget
@@ -59,14 +60,17 @@ signals:
     private:
         QLabel *etatServeur;
         QPushButton *boutonQuitter;
+
     // le serveur sur le reseau
         QTcpServer *serveurTcp;
-      // liste des client
+    // liste des client
         QList<Client *> clients;
-      // liste des clients déconnectés
+    // liste des clients déconnectés
         QList<Client *> oldClients;
-       // la taille du message
+    // la taille du message
         quint16 tailleMessage;
+
+    // composants
 
         ProcessesActivity processes;
         DisksActivity disks;
@@ -74,6 +78,7 @@ signals:
         Ram *ram;
         Network *network;
         Serveur *server;
+        Data *allData;
 };
 
 #endif

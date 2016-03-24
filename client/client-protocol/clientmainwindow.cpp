@@ -1,12 +1,13 @@
 #include "clientmainwindow.h"
 
-ClientMainWindow::ClientMainWindow() : MainWindow()
+ClientMainWindow::ClientMainWindow() : MainWindow(), allData(&processes, &cpu, &disks, &network, &ram, &server)
 {
     // Observers
     cpu.addObserver(_centralWidget->performanceTab()->getProcessorDetails());
     network.addObserver(_centralWidget->performanceTab()->getNetworkDetails());
     ram.addObserver(_centralWidget->performanceTab()->getMemoryDetails());
 
+    //
 
     // Socket and signals
 
@@ -54,30 +55,35 @@ void ClientMainWindow::messageProcessing(QString message)
 
             cout << message.toStdString() << endl << endl;
 
-            if (type.compare("CPU") == 0)
+            if (type.compare("cpu") == 0)
             {
                 cpu.read(json);
             }
-            else if (type.compare("DISK") == 0)
+            else if (type.compare("disks") == 0)
             {
-                disk.read(json);
+                disks.read(json);
             }
-            else if (type.compare("PROCESS") == 0)
+            else if (type.compare("processes") == 0)
             {
-                process.read(json);
+                processes.read(json);
             }
-            else if (type.compare("RAM") == 0)
+            else if (type.compare("ram") == 0)
             {
                 ram.read(json);
             }
-            else if (type.compare("NETWORK") == 0)
+            else if (type.compare("network") == 0)
             {
                 network.read(json);
             }
-            else if (type.compare("SERVER") == 0)
+            else if (type.compare("server") == 0)
             {
                 server.read(json);
             }
+            else if (type.compare("data") == 0)
+            {
+                allData.read(json);
+            }
+
         }
         else
             qDebug() << "jsonDoc is not an object" << endl;
@@ -197,7 +203,7 @@ void ClientMainWindow::erreurSocket(QAbstractSocket::SocketError erreur)
 }
 
 
-// Réglages des paramètres d'acquisition :: SLOT --> envoyer au serveur
+// Réglages des paramètres d'acquisition :: SLOT --> notifier le serveur
 
 void ClientMainWindow::updateComponentsParams(int pro, int cpu, int mem, int disk, int eth)
 {

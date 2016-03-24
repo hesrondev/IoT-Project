@@ -1,6 +1,6 @@
 #include "ram.h"
 
-Ram::Ram() : Component("RAM")
+Ram::Ram() : Component("ram")
 {
     nom = "Mémoire RAM";
     capacite = (double)rand() / RAND_MAX;

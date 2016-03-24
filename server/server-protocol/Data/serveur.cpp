@@ -1,6 +1,6 @@
 #include "serveur.h"
 
-Serveur::Serveur(QList<Client *> clients) : Component("SERVER"), listClients(clients)
+Serveur::Serveur(QList<Client *> clients) : Component("server"), listClients(clients)
 {
      nom = "serveur";
      ip = "192.168.1.1";

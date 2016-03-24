@@ -111,7 +111,7 @@ void Client::stopTimers()
 
 void Client::startTimers()
 {
-    int ms = 1000;
+    int ms = 50;
 
     // si envoie global non activé
     if (!globalSendingState)

@@ -24,6 +24,7 @@ FenServeur::FenServeur()
     cpu = new Cpu();
     ram = new Ram();
     network = new Network();
+    allData = new Data(&processes, cpu, &disks, network, ram, server);
 
     // Gestion du serveur this permet que lorsque la fenetre est detruit le serveur aussi
 
@@ -38,7 +39,6 @@ FenServeur::FenServeur()
         connect(serveurTcp, SIGNAL(newConnection()), this, SLOT(nouvelleConnexion()));
 
         // initialisation de l'adresse ip
-
 
     }
 
@@ -336,6 +336,16 @@ void FenServeur::sendServerData(QTcpSocket *soc)
 // envoie de toutes les données à la fois
 void FenServeur::sendAllData(QTcpSocket *soc)
 {
-    cout << "DATA GLOBAL SENDING ..." << endl;
-    sendDataToClient(soc, "ALL--DATA!!!");
+    QJsonObject  js ;
+    allData->updateData(clients);
+    allData->write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    qDebug() << "ALL -- DATA" << endl;
+    cout << message.toStdString() << endl << endl;
+
+    sendDataToClient(soc, message);
+
 }

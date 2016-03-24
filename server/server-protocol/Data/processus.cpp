@@ -1,7 +1,7 @@
 #include "processus.h"
 
 
-Processus::Processus() : Component("PROCESS")
+Processus::Processus() : Component("process")
 {
      nom = "processus1";
      pid = (int)rand() / RAND_MAX;

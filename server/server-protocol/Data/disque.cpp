@@ -1,6 +1,6 @@
 #include "disque.h"
 
-Disque::Disque() : Component("DISK")
+Disque::Disque() : Component("disk")
 {
      nom ="disk";
      capaciteUtiliser = 1.0;

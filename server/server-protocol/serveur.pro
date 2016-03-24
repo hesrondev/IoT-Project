@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     Data/timercustom.cpp \
     Data/component.cpp \
     Data/processesactivity.cpp \
-    Data/disksactivity.cpp
+    Data/disksactivity.cpp \
+    Data/data.cpp
 
 HEADERS  += FenServeur.h \
     Data/cpu.h \
@@ -40,6 +41,7 @@ HEADERS  += FenServeur.h \
     Data/timercustom.h \
     Data/component.h \
     Data/processesactivity.h \
-    Data/disksactivity.h
+    Data/disksactivity.h \
+    Data/data.h
 
 FORMS    += main.ui

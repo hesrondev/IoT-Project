@@ -10,6 +10,7 @@
 #include "Data/disque.h"
 #include "Data/network.h"
 #include "Data/serveur.h"
+#include "Data/data.h"
 
 #include "client-gui/mainwindow.h"
 
@@ -45,12 +46,15 @@ class ClientMainWindow : public MainWindow
 
         // Composants de la VM
         Client client;
-        Processus process;
+        ProcessesActivity processes;
+        DisksActivity disks;
         Cpu cpu;
         Ram ram;
-        Disque disk;
         Network network;
         Serveur server;
+
+        // Toutes les données
+        Data allData;
 };
 
 #endif
