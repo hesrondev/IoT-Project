@@ -26,6 +26,11 @@ public:
 public slots:
     void enableCompsGroup();
     void enableGlobalGroup();
+    void on_validButton_clicked();
+
+signals:
+    void globalParam(int gp);
+    void componentsParams(int pro, int cpu, int mem, int disk, int eth);
 
 private:
 
@@ -35,8 +40,10 @@ private:
     QSpinBox *diskFqSB;
     QSpinBox *ethFqSB;
     QSpinBox *globalSB;
+
     QGroupBox *globalGroup;
     QGroupBox *byCompsGroup;
+
     QPushButton *validButton;
 
     QCheckBox *byCompsCB;

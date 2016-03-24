@@ -95,6 +95,39 @@ Client *FenServeur::findClientBySocket(QTcpSocket *socket)
 }
 
 
+// Traitement du message reçu
+
+void FenServeur::messageProcessing(QTcpSocket *soc, QString message)
+{
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(message.toUtf8());
+    QJsonObject json;
+
+    if (!jsonDoc.isNull())
+    {
+        if (jsonDoc.isObject())
+        {
+            json = jsonDoc.object();
+
+            // Traitement du message selon le type de l'objet
+            // Si on trouve le client, on le met à jour
+
+            QString type = json["type"].toString();
+
+            if (type.compare("CLIENT") == 0)
+            {
+                Client *client = findClientBySocket(soc);
+                client->read(json);
+            }
+        }
+        else
+            qDebug() << "jsonDoc is not an object" << endl;
+     }
+
+     else
+        qDebug() << "INVALID JSON\n" << message << endl;
+}
+
+
 
 /* ****** SLOTS ********* */
 
@@ -125,6 +158,7 @@ void FenServeur::nouvelleConnexion()
     connect(nouveauClient->networkTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendNetworkData(QTcpSocket*)));
     connect(nouveauClient->diskTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendDiskData(QTcpSocket*)));
     connect(nouveauClient->serverTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendServerData(QTcpSocket*)));
+    connect(nouveauClient->globalTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendAllData(QTcpSocket*)));
 
     nouveauClient->startTimers();
 
@@ -158,12 +192,9 @@ void FenServeur::donneesRecues(){
     QString message;
     in >> message;
 
-    /// RECEPTION MESSAGE CLIENT
-    /// TRAITEMENT
-    /// MODIFICATION DU CLIENT CONCERNE
-    ///
-    // 2 : on renvoie le message à tous les clients
-    envoyerATous(message);
+    // Traitement du message reçu
+
+    messageProcessing(socket, message);
 
     // 3 : remise de la taille du message à 0 pour permettre la réception des futurs messages
     tailleMessage = 0;
@@ -185,7 +216,7 @@ void FenServeur::deconnexionClient()
     if (client != NULL)
     {
         // ajout du client à la liste des anciens clients
-        oldClients.append(client);
+        // oldClients.append(client);
 
         clients.removeOne(client);
         // Changer le statut du client
@@ -252,7 +283,6 @@ void FenServeur::sendRamData(QTcpSocket *soc)
 
 void FenServeur::sendDiskData(QTcpSocket *soc)
 {
-
     QJsonObject  js;
     disks.updateData();
     disks.write(js);
@@ -303,7 +333,8 @@ void FenServeur::sendServerData(QTcpSocket *soc)
     sendDataToClient(soc, message);
 }
 
-void FenServeur::sendAllDataSlot(QTcpSocket *soc)
+// envoie de toutes les données à la fois
+void FenServeur::sendAllData(QTcpSocket *soc)
 {
-
+    sendDataToClient(soc, "ALL--DATA!!!");
 }

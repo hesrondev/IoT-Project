@@ -23,10 +23,12 @@ ClientMainWindow::ClientMainWindow() : MainWindow()
     // deconnexion
     connect(_menuBar->actionDisconnect, SIGNAL(triggered(bool)), this, SLOT(deconnexion()));
 
+    // paramétrage
+
+    connect(settingsDisplay, SIGNAL(componentsParams(int,int,int,int,int)), this, SLOT(updateComponentsParams(int,int,int,int,int)));
+    connect(settingsDisplay, SIGNAL(globalParam(int)), this, SLOT(updateGlobalParam(int)));
+
     tailleMessage = 0;
-
-
-    //
 }
 
 
@@ -44,9 +46,8 @@ void ClientMainWindow::messageProcessing(QString message)
             json = jsonDoc.object();
 
             // Traitement du message selon le type de l'objet
-            QString type = json["type"].toString();
 
-            cout << type.toStdString() << endl;
+            QString type = json["type"].toString();
 
             if (type.compare("CPU") == 0)
             {
@@ -82,6 +83,24 @@ void ClientMainWindow::messageProcessing(QString message)
 }
 
 
+// Envoi d'un message au serveur
+
+void ClientMainWindow::sendDataToServer(const QString &message)
+{
+    QByteArray paquet;
+    QDataStream out(&paquet, QIODevice::WriteOnly);
+
+    // On prépare le paquet à envoyer
+    out << (quint16) 0;
+    out << message;
+    out.device()->seek(0);
+    out << (quint16) (paquet.size() - sizeof(quint16));
+
+    // On envoie le paquet
+    socket->write(paquet);
+}
+
+
 // Tentative de connexion au serveur
 void ClientMainWindow::on_boutonConnexion_clicked(const QString &ip, const QString &port, const QString &clientName, const QString &mdp)
 {
@@ -93,30 +112,6 @@ void ClientMainWindow::on_boutonConnexion_clicked(const QString &ip, const QStri
 
     socket->abort(); // On désactive les connexions précédentes s'il y en a
     socket->connectToHost(ip, port.toInt()); // On se connecte au serveur demandé
-}
-
-// Envoi d'un message au serveur
-void ClientMainWindow::on_boutonEnvoyer_clicked()
-{
-    QByteArray paquet;
-    QDataStream out(&paquet, QIODevice::WriteOnly);
-
-    // On prépare le paquet à envoyer
-    QString messageAEnvoyer = " ";
-
-    out << (quint16) 0;
-    out << messageAEnvoyer;
-    out.device()->seek(0);
-    out << (quint16) (paquet.size() - sizeof(quint16));
-
-    socket->write(paquet); // On envoie le paquet
-}
-
-
-// Appuyer sur la touche Entrée a le même effet que cliquer sur le bouton "Envoyer"
-void ClientMainWindow::on_message_returnPressed()
-{
-    on_boutonEnvoyer_clicked();
 }
 
 // On a reçu un paquet (ou un sous-paquet)
@@ -139,14 +134,12 @@ void ClientMainWindow::donneesRecues()
     if (socket->bytesAvailable() < tailleMessage)
         return;
 
-
     // Si on arrive jusqu'à cette ligne, on peut récupérer le message entier
     QString messageRecu;
     in >> messageRecu;
 
     /// Traitement du message ici !
 
-    displayStatus(messageRecu);
     messageProcessing(messageRecu);
 
     // On remet la taille du message à 0 pour pouvoir recevoir de futurs messages
@@ -157,6 +150,7 @@ void ClientMainWindow::donneesRecues()
 void ClientMainWindow::connecte()
 {
     displayStatus(tr("Connexion réussie !"));
+    sendClientData();
 
     // activation du bouton de déconnexion
     _menuBar->actionDisconnect->setEnabled(true);
@@ -172,11 +166,12 @@ void ClientMainWindow::deconnecte()
 
 void ClientMainWindow::deconnexion()
 {
-    socket->abort(); // On désactive les connexions précédentes s'il y en a
+    socket->abort();
     _menuBar->actionDisconnect->setEnabled(false);
 }
 
 // Ce slot est appelé lorsqu'il y a une erreur
+
 void ClientMainWindow::erreurSocket(QAbstractSocket::SocketError erreur)
 {
     switch(erreur) // On affiche un message différent selon l'erreur qu'on nous indique
@@ -194,6 +189,34 @@ void ClientMainWindow::erreurSocket(QAbstractSocket::SocketError erreur)
             displayStatus(tr("ERREUR : ") + socket->errorString() + tr(""));
         break;
     }
+}
 
-    //boutonConnexion->setEnabled(true);
+
+// Réglages des paramètres d'acquisition :: SLOT --> envoyer au serveur
+
+void ClientMainWindow::updateComponentsParams(int pro, int cpu, int mem, int disk, int eth)
+{
+    client.setComponentsParams(pro, cpu, mem, disk, eth);
+    sendClientData();
+}
+
+
+void ClientMainWindow::updateGlobalParam(int glo)
+{
+    client.setGlobalFq(glo);
+    sendClientData();
+}
+
+
+// Envoie des données du client
+
+void ClientMainWindow::sendClientData()
+{
+    QJsonObject  js;
+    client.write(js);
+
+    QJsonDocument doc(js);
+    QString message(doc.toJson(QJsonDocument::Compact));
+
+    sendDataToServer(message);
 }

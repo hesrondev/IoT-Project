@@ -27,8 +27,12 @@ class FenServeur : public QWidget
      // envoyer a tout les client connecter le message
         void envoyerATous(const QString &message);
         void sendDataToClient(QTcpSocket *soc, const QString &message);
-    // trouver client par socket
+     // trouver client par socket
         Client *findClientBySocket(QTcpSocket *socket);
+
+     // traitement des messages reçus
+        void messageProcessing(QTcpSocket *soc, QString message);
+
 
     private slots:
         // apeller lors qu'un client se connecte
@@ -47,7 +51,7 @@ class FenServeur : public QWidget
         void sendNetworkData(QTcpSocket * soc);
         void sendServerData(QTcpSocket * soc);
 
-        void sendAllDataSlot(QTcpSocket *soc);
+        void sendAllData(QTcpSocket *soc);
 
 signals:
         void sendProcessesDataSignal(QTcpSocket *socket);

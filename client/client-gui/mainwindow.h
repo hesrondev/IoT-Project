@@ -40,6 +40,7 @@ protected:
     QStatusBar *_statusBar;
 
     ServerLoginDialog *serverLogin;
+    DisplaySettingsDialog *settingsDisplay;
 };
 
 #endif // MAINWINDOW_H

@@ -124,6 +124,7 @@ void DisplaySettingsDialog::initWidgets()
 
     connect(byCompsCB, SIGNAL(clicked(bool)), this, SLOT(enableCompsGroup()));
     connect(globCB, SIGNAL(clicked(bool)), this, SLOT(enableGlobalGroup()));
+    connect(validButton, SIGNAL(clicked(bool)), this, SLOT(on_validButton_clicked()));
 }
 
 
@@ -143,6 +144,19 @@ void DisplaySettingsDialog::enableGlobalGroup()
     globalGroup->setEnabled(true);
 }
 
+// Appuie sur le bouton valider
+
+void DisplaySettingsDialog::on_validButton_clicked()
+{
+    hide();
+
+    // si le paramètre global est activé
+    if (globCB->isChecked())
+        emit globalParam(globalSB->value());
+    else
+        emit componentsParams(processFqSB->value(), cpuFqSB->value(),
+                              memoryFqSB->value(), diskFqSB->value(), ethFqSB->value());
+}
 
 
 /*

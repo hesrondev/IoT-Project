@@ -31,6 +31,6 @@ DeviceCustomButton::DeviceCustomButton(QString deviceName, int deviceType)
     glayout->addWidget(progressbar, 1, 1, 1, 3);
     glayout->addWidget(spaceLabel, 2, 1);
 
-    setFixedSize(250, 50);
+    setFixedSize(270, 60);
 
 }

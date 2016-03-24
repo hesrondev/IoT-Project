@@ -15,6 +15,7 @@ class Client
 public:
     Client();
     Client(int id, QTcpSocket *socket);
+
     void read(const QJsonObject &json);
     void write(QJsonObject &json);
 
@@ -22,9 +23,6 @@ public:
     void startTimers();
 
     void disconnect();
-
-    int getIdConnexion() const;
-    void setIdConnexion(int value);
 
 private:
     QTcpSocket* socket;
@@ -35,6 +33,9 @@ private:
     TimerCustom *diskTimer;
     TimerCustom *networkTimer;
     TimerCustom *serverTimer;
+    TimerCustom *globalTimer;
+
+    // gestion des timers
 
     int processFq;
     int cpuFq;
@@ -42,7 +43,12 @@ private:
     int diskFq;
     int networkFq;
     int serverFq;
+    int globalFq;
 
+    // état de l'envoie par groupe
+    bool globalSendingState;
+
+    QString type;
     QString adresseIp;
     int IdConnexion ;
     QString nom;

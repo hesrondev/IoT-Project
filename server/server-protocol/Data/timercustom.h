@@ -15,7 +15,7 @@ public slots:
     void timeoutSlot();
 
 signals:
-    timeoutSignal(QTcpSocket *socket);
+    void timeoutSignal(QTcpSocket *socket);
 
 private:
     QTcpSocket *socket;

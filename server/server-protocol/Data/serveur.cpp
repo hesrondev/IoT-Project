@@ -49,9 +49,9 @@ void Serveur::updateData()
 
 }
 
-void Serveur::updateData(QList<Client *> listClients)
+void Serveur::updateData(QList<Client *> lc)
 {
-
+    listClients = lc;
 }
 
 Serveur::~Serveur()

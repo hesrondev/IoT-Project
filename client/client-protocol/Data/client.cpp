@@ -1,15 +1,9 @@
 #include "client.h"
 
-Client::Client()
+Client::Client() : ServerMessage("CLIENT"), dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
 {
-}
-
-Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
-{
-    this->socket = socket;
-
     adresseIp = "0.0.0.0";
-    IdConnexion = id;
+    IdConnexion = 0;
     nom ="client";
     status = true;
 
@@ -21,62 +15,59 @@ Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::curre
     diskFq = 1;
     networkFq = 1;
     serverFq = 1;
+    globalFq = 1;
 
-    processTimer = new QTimer();
-    cpuTimer = new QTimer();
-    ramTimer = new QTimer();
-    diskTimer = new QTimer();
-    networkTimer = new QTimer();
-    serverTimer = new QTimer();
+    globalSendingState = true;
 }
 
 void Client::read(const QJsonObject &json)
 {
+    type = json["type"].toString();
     adresseIp = json["adresseIp"].toString();
     IdConnexion = json["adresseIp"].toInt();
     nom = json["nom"].toString();
     status = json["status"].toBool();
     dateDebutConnexion.fromString(json["dateDebutConnexion"].toString());
     dateDerniereConnexion.fromString(json["dateDerniereConnexion"].toString());
+
+    // timers
+
+    processFq = json["processFq"].toInt();
+    cpuFq = json["cpuFq"].toInt();
+    ramFq = json["ramFq"].toInt();
+    diskFq = json["diskFq"].toInt();
+    networkFq = json["networkFq"].toInt();
+    serverFq = json["serverFq"].toInt();
+    globalFq = json["globalFq"].toInt();
+
+    globalSendingState = json["globalSendingState"].toBool();
+
 }
 
 void Client::write(QJsonObject &json)
 {
+    json["type"] = type;
     json["adresseIp"] =   adresseIp;
     json["IdConnexion"] = IdConnexion ;
     json["nom"] = nom;
     json["status"] =  status;
     json["dateDebutConnexion"] =  dateDebutConnexion.toString();
 
-    // set last connection date
-
     dateDerniereConnexion = QDateTime::currentDateTime();
     json["dateDerniereConnexion"] =  dateDerniereConnexion.toString();
-}
 
+    // timers
 
-// Fonction d'arrêt de tous les minuteurs
+    json["processFq"] = processFq;
+    json["cpuFq"] = cpuFq;
+    json["ramFq"] = ramFq;
+    json["diskFq"] = diskFq;
+    json["networkFq"] = networkFq;
+    json["serverFq"] = serverFq;
+    json["globalFq"] = globalFq;
 
-void Client::stopTimers()
-{
-    processTimer->stop();
-    cpuTimer->stop();
-    ramTimer->stop();
-    diskTimer->stop();
-    networkTimer->stop();
-    serverTimer->stop();
-}
+    json["globalSendingState"] = globalSendingState;
 
-void Client::startTimers()
-{
-    int ms = 1000;
-
-    processTimer->start(ms * processFq);
-    cpuTimer->start(ms * cpuFq);
-    ramTimer->start(ms * ramFq);
-    diskTimer->start(ms * diskFq);
-    networkTimer->start(ms * networkFq);
-    serverTimer->start(ms * serverFq);
 }
 
 void Client::disconnect()
@@ -84,25 +75,36 @@ void Client::disconnect()
     status = false;
 }
 
+//
 
-/* **** Getters and Setters *** */
-
-int Client::getIdConnexion() const
+void Client::setComponentsParams(int pro, int cpu, int mem, int disk, int eth)
 {
-    return IdConnexion;
+    processFq = pro;
+    cpuFq = cpu;
+    ramFq = mem;
+    diskFq = disk;
+    networkFq = eth;
+
+    // global param off
+    globalSendingState = false;
 }
 
-void Client::setIdConnexion(int value)
-{
-    IdConnexion = value;
-}
-
-QString Client::getNom() const
-{
-    return nom;
-}
+// Setters
 
 void Client::setNom(const QString &value)
 {
     nom = value;
+}
+
+void Client::setGlobalFq(int value)
+{
+    globalFq = value;
+
+    // global param on
+    globalSendingState = true;
+}
+
+void Client::setGlobalSendingState(bool value)
+{
+    globalSendingState = value;
 }

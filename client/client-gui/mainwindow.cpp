@@ -37,7 +37,7 @@ void MainWindow::initWidgets()
     // footer widget
 
     _statusBar = new QStatusBar();
-    _statusBar->setFixedHeight(40);
+    _statusBar->setFixedHeight(30);
 
     setStatusBar(_statusBar);
 
@@ -45,6 +45,10 @@ void MainWindow::initWidgets()
     // logins server
 
     serverLogin = new ServerLoginDialog();
+
+    // Param dialog
+
+    settingsDisplay = new DisplaySettingsDialog();
 }
 
 
@@ -67,8 +71,8 @@ void MainWindow::loginServerSlot()
 
 void MainWindow::displaySettingsSlot()
 {
-    DisplaySettingsDialog *displaySettings = new DisplaySettingsDialog();
-    displaySettings->show();
+
+    settingsDisplay->show();
 }
 
 void MainWindow::aboutAppSlot()

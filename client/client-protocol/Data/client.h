@@ -5,38 +5,30 @@
 #include <QDateTime>
 #include <QDate>
 
+#include "serverMessage.h"
+
 using namespace std;
 
-class Client
+class Client : public ServerMessage
 {
-    friend class FenServeur;
 
 public:
     Client();
-    Client(int id, QTcpSocket *socket);
     void read(const QJsonObject &json);
     void write(QJsonObject &json);
-
-    void stopTimers();
-    void startTimers();
-
     void disconnect();
 
-    int getIdConnexion() const;
-    void setIdConnexion(int value);
+    void setComponentsParams(int pro, int cpu, int mem, int disk, int eth);
 
-    QString getNom() const;
+    void setGlobalFq(int value);
+
+    void setGlobalSendingState(bool value);
+
     void setNom(const QString &value);
 
 private:
-    QTcpSocket* socket;
 
-    QTimer *processTimer;
-    QTimer *cpuTimer;
-    QTimer *ramTimer;
-    QTimer *diskTimer;
-    QTimer *networkTimer;
-    QTimer *serverTimer;
+    // gestion des timers
 
     int processFq;
     int cpuFq;
@@ -44,6 +36,10 @@ private:
     int diskFq;
     int networkFq;
     int serverFq;
+    int globalFq;
+
+    // état de l'envoie par groupe
+    bool globalSendingState;
 
     QString adresseIp;
     int IdConnexion ;

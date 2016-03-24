@@ -19,7 +19,7 @@ public:
     void write(QJsonObject &json);
 
     void updateData();
-    void updateData(QList <Client*> listClients);
+    void updateData(QList <Client*> lc);
 
     virtual ~Serveur();
 

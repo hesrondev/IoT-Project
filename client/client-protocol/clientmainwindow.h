@@ -23,16 +23,21 @@ class ClientMainWindow : public MainWindow
 
         // fonction du traitement des messages
         void messageProcessing(QString message);
+        void sendDataToServer(const QString &message);
+        void sendClientData();
 
     private slots:
         void on_boutonConnexion_clicked(const QString &ip, const QString &port, const QString &clientName, const QString &mdp);
-        void on_boutonEnvoyer_clicked();
-        void on_message_returnPressed();
         void donneesRecues();
         void connecte();
         void deconnecte();
         void deconnexion();
         void erreurSocket(QAbstractSocket::SocketError erreur);
+
+    // fréquence d'acquisition
+        void updateComponentsParams(int pro, int cpu, int mem, int disk, int eth);
+        void updateGlobalParam(int glo);
+
 
     private:
         QTcpSocket *socket; // Représente le serveur
