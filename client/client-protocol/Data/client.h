@@ -26,6 +26,8 @@ public:
 
     void setNom(const QString &value);
 
+    void setMdpServer(const QString &value);
+
 private:
 
     // gestion des timers
@@ -44,6 +46,7 @@ private:
     QString adresseIp;
     int IdConnexion ;
     QString nom;
+    QString mdpServer;
     bool status;
     QDateTime dateDebutConnexion;
     QDateTime dateDerniereConnexion;

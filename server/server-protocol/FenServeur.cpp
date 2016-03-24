@@ -113,10 +113,15 @@ void FenServeur::messageProcessing(QTcpSocket *soc, QString message)
 
             QString type = json["type"].toString();
 
-            if (type.compare("CLIENT") == 0)
+            if (type.compare("client") == 0)
             {
                 Client *client = findClientBySocket(soc);
                 client->read(json);
+
+                QString message(jsonDoc.toJson(QJsonDocument::Compact));
+
+                cout << message.toStdString() << endl;
+
             }
         }
         else
@@ -139,7 +144,7 @@ void FenServeur::nouvelleConnexion()
     // récupérer la socket correspondant au nouveau client
     QTcpSocket * socketClient= serveurTcp->nextPendingConnection();
 
-    Client *nouveauClient = new Client(clients.size() + 1, socketClient);
+    Client *nouveauClient = new Client(id_counter++, socketClient);
 
     //conserve la liste des clients connectés
     clients << nouveauClient;

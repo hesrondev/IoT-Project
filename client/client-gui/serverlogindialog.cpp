@@ -68,5 +68,5 @@ ServerLoginDialog::ServerLoginDialog()
 void ServerLoginDialog::validBtnClicked()
 {
     hide();
-    emit serverConnectionSignal(addressLE->text(), portLE->text(), "client-name", passwordLE->text());
+    emit serverConnectionSignal(addressLE->text(), portLE->text(), nameLE->text(), passwordLE->text());
 }

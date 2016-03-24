@@ -1,10 +1,11 @@
 #include "client.h"
 
-Client::Client() : ServerMessage("CLIENT"), dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
+Client::Client() : ServerMessage("client"), dateDebutConnexion(QDateTime::currentDateTime()), dateDerniereConnexion(QDateTime::currentDateTime())
 {
     adresseIp = "0.0.0.0";
     IdConnexion = 0;
-    nom ="client";
+    nom = "client-name";
+    mdpServer = "";
     status = true;
 
     // timers, nombre de fois par seconde
@@ -26,6 +27,7 @@ void Client::read(const QJsonObject &json)
     adresseIp = json["adresseIp"].toString();
     IdConnexion = json["adresseIp"].toInt();
     nom = json["nom"].toString();
+    mdpServer = json["mdpserver"].toString();
     status = json["status"].toBool();
     dateDebutConnexion.fromString(json["dateDebutConnexion"].toString());
     dateDerniereConnexion.fromString(json["dateDerniereConnexion"].toString());
@@ -50,6 +52,7 @@ void Client::write(QJsonObject &json)
     json["adresseIp"] =   adresseIp;
     json["IdConnexion"] = IdConnexion ;
     json["nom"] = nom;
+    json["mdpserver"] = mdpServer;
     json["status"] =  status;
     json["dateDebutConnexion"] =  dateDebutConnexion.toString();
 
@@ -94,6 +97,11 @@ void Client::setComponentsParams(int pro, int cpu, int mem, int disk, int eth)
 void Client::setNom(const QString &value)
 {
     nom = value;
+}
+
+void Client::setMdpServer(const QString &value)
+{
+    mdpServer = value;
 }
 
 void Client::setGlobalFq(int value)

@@ -52,6 +52,7 @@ private:
     QString adresseIp;
     int IdConnexion ;
     QString nom;
+    QString mdpServer;
     bool status;
     QDateTime dateDebutConnexion;
     QDateTime dateDerniereConnexion;

@@ -118,8 +118,10 @@ void ClientMainWindow::on_boutonConnexion_clicked(const QString &ip, const QStri
     // On annonce sur la fenêtre qu'on est en train de se connecter
     displayStatus(tr("Tentative de connexion en cours..."));
 
-    // nom du client
+    // nom du client + mot de passe serveur
+
     client.setNom(clientName);
+    client.setMdpServer(mdp);
 
     socket->abort(); // On désactive les connexions précédentes s'il y en a
     socket->connectToHost(ip, port.toInt()); // On se connecte au serveur demandé

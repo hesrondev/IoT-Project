@@ -11,7 +11,8 @@ Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::curre
     type = "CLIENT";
     adresseIp ="192.168.1.1";
     IdConnexion = id;
-    nom ="client";
+    nom ="client-name";
+    mdpServer = "";
     status = true;
 
     // timers, nombre de fois par seconde
@@ -41,6 +42,7 @@ void Client::read(const QJsonObject &json)
     adresseIp = json["adresseIp"].toString();
     IdConnexion = json["adresseIp"].toInt();
     nom = json["nom"].toString();
+    mdpServer = json["mdpserver"].toString();
     status = json["status"].toBool();
     dateDebutConnexion.fromString(json["dateDebutConnexion"].toString());
     dateDerniereConnexion.fromString(json["dateDerniereConnexion"].toString());
@@ -73,6 +75,7 @@ void Client::write(QJsonObject &json)
     json["adresseIp"] =   adresseIp;
     json["IdConnexion"] = IdConnexion ;
     json["nom"] = nom;
+    json["mdpServer"] = mdpServer;
     json["status"] =  status;
     json["dateDebutConnexion"] =  dateDebutConnexion.toString();
 
@@ -111,7 +114,7 @@ void Client::stopTimers()
 
 void Client::startTimers()
 {
-    int ms = 50;
+    int ms = 2000;
 
     // si envoie global non activé
     if (!globalSendingState)
