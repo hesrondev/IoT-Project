@@ -49,6 +49,11 @@ void ClientMainWindow::messageProcessing(QString message)
 
             QString type = json["type"].toString();
 
+            QJsonDocument doc(json);
+            QString message(doc.toJson(QJsonDocument::Compact));
+
+            cout << message.toStdString() << endl << endl;
+
             if (type.compare("CPU") == 0)
             {
                 cpu.read(json);

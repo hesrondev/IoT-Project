@@ -91,8 +91,6 @@ void Client::write(QJsonObject &json)
     json["serverFq"] = serverFq;
     json["globalFq"] = globalFq;
 
-    json["globalSendingState"] = globalSendingState;
-
 }
 
 

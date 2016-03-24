@@ -336,5 +336,6 @@ void FenServeur::sendServerData(QTcpSocket *soc)
 // envoie de toutes les données à la fois
 void FenServeur::sendAllData(QTcpSocket *soc)
 {
+    cout << "DATA GLOBAL SENDING ..." << endl;
     sendDataToClient(soc, "ALL--DATA!!!");
 }
