@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ClientMainWindow_t {
-    QByteArrayData data[15];
-    char stringdata0[201];
+    QByteArrayData data[16];
+    char stringdata0[213];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,17 +41,19 @@ QT_MOC_LITERAL(8, 93, 24), // "on_message_returnPressed"
 QT_MOC_LITERAL(9, 118, 13), // "donneesRecues"
 QT_MOC_LITERAL(10, 132, 8), // "connecte"
 QT_MOC_LITERAL(11, 141, 10), // "deconnecte"
-QT_MOC_LITERAL(12, 152, 12), // "erreurSocket"
-QT_MOC_LITERAL(13, 165, 28), // "QAbstractSocket::SocketError"
-QT_MOC_LITERAL(14, 194, 6) // "erreur"
+QT_MOC_LITERAL(12, 152, 11), // "deconnexion"
+QT_MOC_LITERAL(13, 164, 12), // "erreurSocket"
+QT_MOC_LITERAL(14, 177, 28), // "QAbstractSocket::SocketError"
+QT_MOC_LITERAL(15, 206, 6) // "erreur"
 
     },
     "ClientMainWindow\0on_boutonConnexion_clicked\0"
     "\0ip\0port\0clientName\0mdp\0"
     "on_boutonEnvoyer_clicked\0"
     "on_message_returnPressed\0donneesRecues\0"
-    "connecte\0deconnecte\0erreurSocket\0"
-    "QAbstractSocket::SocketError\0erreur"
+    "connecte\0deconnecte\0deconnexion\0"
+    "erreurSocket\0QAbstractSocket::SocketError\0"
+    "erreur"
 };
 #undef QT_MOC_LITERAL
 
@@ -61,7 +63,7 @@ static const uint qt_meta_data_ClientMainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -69,13 +71,14 @@ static const uint qt_meta_data_ClientMainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    4,   49,    2, 0x08 /* Private */,
-       7,    0,   58,    2, 0x08 /* Private */,
-       8,    0,   59,    2, 0x08 /* Private */,
-       9,    0,   60,    2, 0x08 /* Private */,
-      10,    0,   61,    2, 0x08 /* Private */,
-      11,    0,   62,    2, 0x08 /* Private */,
-      12,    1,   63,    2, 0x08 /* Private */,
+       1,    4,   54,    2, 0x08 /* Private */,
+       7,    0,   63,    2, 0x08 /* Private */,
+       8,    0,   64,    2, 0x08 /* Private */,
+       9,    0,   65,    2, 0x08 /* Private */,
+      10,    0,   66,    2, 0x08 /* Private */,
+      11,    0,   67,    2, 0x08 /* Private */,
+      12,    0,   68,    2, 0x08 /* Private */,
+      13,    1,   69,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,    6,
@@ -84,7 +87,8 @@ static const uint qt_meta_data_ClientMainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 13,   14,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 14,   15,
 
        0        // eod
 };
@@ -101,13 +105,14 @@ void ClientMainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 3: _t->donneesRecues(); break;
         case 4: _t->connecte(); break;
         case 5: _t->deconnecte(); break;
-        case 6: _t->erreurSocket((*reinterpret_cast< QAbstractSocket::SocketError(*)>(_a[1]))); break;
+        case 6: _t->deconnexion(); break;
+        case 7: _t->erreurSocket((*reinterpret_cast< QAbstractSocket::SocketError(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 6:
+        case 7:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -143,13 +148,13 @@ int ClientMainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

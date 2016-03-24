@@ -9,6 +9,7 @@ class MenuBar : public QMenuBar
 {
 
     friend class MainWindow;
+    friend class ClientMainWindow;
 
 public:
     MenuBar();
@@ -23,6 +24,7 @@ private:
 
     QAction *actionQuit;
     QAction *actionNewConnection;
+    QAction *actionDisconnect;
     QAction *actionRefresh;
     QAction *actionSettings;
     QAction *actionAbout;

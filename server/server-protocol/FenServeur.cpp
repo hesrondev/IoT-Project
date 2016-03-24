@@ -57,6 +57,20 @@ void FenServeur::envoyerATous(const QString &message)
         clients[i]->socket->write(paquet);
 }
 
+void FenServeur::sendDataToClient(QTcpSocket *soc, const QString &message)
+{
+    // Préparation du paquet qui va contenir le paquet à envoyer sur le réseau
+    QByteArray paquet;
+    QDataStream out(&paquet, QIODevice::WriteOnly);
+
+    out << (quint16) 0; // On écrit 0 au début du paquet pour réserver la place pour écrire la taille
+    out << message; // On ajoute le message à la suite
+    out.device()->seek(0); // On se replace au début du paquet
+    out << (quint16) (paquet.size() - sizeof(quint16)); // On écrase le 0 qu'on avait réservé par la longueur du message
+
+    soc->write(paquet);
+}
+
 
 // Trouver un client en connaissant son socket
 
@@ -78,7 +92,7 @@ Client *FenServeur::findClientBySocket(QTcpSocket *socket)
 void FenServeur::nouvelleConnexion()
 {
     /// On signale la connexion à tous les clients [MESSAGE PERSO -- MAJ Serveur]
-    envoyerATous(tr("<em>Un nouveau client vient de se connecter</em>"));
+    envoyerATous(tr("Un nouveau client vient de se connecter"));
 
     // récupérer la socket correspondant au nouveau client
     QTcpSocket * socketClient= serveur->nextPendingConnection();
@@ -96,12 +110,12 @@ void FenServeur::nouvelleConnexion()
 
     // timers
 
-    connect(nouveauClient->processTimer, SIGNAL(timeout()), this, SLOT(sendProcessesData()));
-    connect(nouveauClient->cpuTimer, SIGNAL(timeout()), this, SLOT(sendCpuData()));
-    connect(nouveauClient->ramTimer, SIGNAL(timeout()), this, SLOT(sendRamData()));
-    connect(nouveauClient->networkTimer, SIGNAL(timeout()), this, SLOT(sendNetworkData()));
-    connect(nouveauClient->diskTimer, SIGNAL(timeout()), this, SLOT(sendDiskData()));
-    connect(nouveauClient->serverTimer, SIGNAL(timeout()), this, SLOT(sendServerData()));
+    connect(nouveauClient->processTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendProcessesData(QTcpSocket*)));
+    connect(nouveauClient->cpuTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendCpuData(QTcpSocket*)));
+    connect(nouveauClient->ramTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendRamData(QTcpSocket*)));
+    connect(nouveauClient->networkTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendNetworkData(QTcpSocket*)));
+    connect(nouveauClient->diskTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendDiskData(QTcpSocket*)));
+    connect(nouveauClient->serverTimer, SIGNAL(timeoutSignal(QTcpSocket*)), this, SLOT(sendServerData(QTcpSocket*)));
 
     nouveauClient->startTimers();
 
@@ -150,7 +164,7 @@ void FenServeur::donneesRecues(){
 
 void FenServeur::deconnexionClient()
 {
-    envoyerATous(tr("<em>Un client vient de se déconnecter</em>"));
+    envoyerATous(tr("Un client vient de se déconnecter"));
 
     // On détermine quel client se déconnecte
     QTcpSocket *socket = qobject_cast<QTcpSocket *>(sender());
@@ -176,10 +190,10 @@ void FenServeur::deconnexionClient()
 
 // Processes data
 
-void FenServeur::sendProcessesData()
+void FenServeur::sendProcessesData(QTcpSocket *soc)
 {
     Processus sm;
-    QJsonObject  js ;
+    QJsonObject  js;
     sm.write(js);
 
     QJsonDocument doc(js);
@@ -187,12 +201,12 @@ void FenServeur::sendProcessesData()
 
     cout << message.toStdString() << endl << endl;
 
-    envoyerATous(message);
+    sendDataToClient(soc, message);
 }
 
 // Cpu data
 
-void FenServeur::sendCpuData()
+void FenServeur::sendCpuData(QTcpSocket* soc)
 {
     Cpu sm;
     QJsonObject  js ;
@@ -203,12 +217,12 @@ void FenServeur::sendCpuData()
 
     cout << message.toStdString() << endl << endl;
 
-    envoyerATous(message);
+    sendDataToClient(soc, message);
 }
 
 // Ram data
 
-void FenServeur::sendRamData()
+void FenServeur::sendRamData(QTcpSocket *soc)
 {
     Ram sm;
     QJsonObject  js ;
@@ -219,12 +233,12 @@ void FenServeur::sendRamData()
 
     cout << message.toStdString() << endl << endl;
 
-    envoyerATous(message);
+    sendDataToClient(soc, message);
 }
 
 // Disk data
 
-void FenServeur::sendDiskData()
+void FenServeur::sendDiskData(QTcpSocket *soc)
 {
     Disque sm;
     QJsonObject  js ;
@@ -235,12 +249,12 @@ void FenServeur::sendDiskData()
 
     cout << message.toStdString() << endl << endl;
 
-    envoyerATous(message);
+    sendDataToClient(soc, message);
 }
 
 // Network data
 
-void FenServeur::sendNetworkData()
+void FenServeur::sendNetworkData(QTcpSocket *soc)
 {
     Network sm;
 
@@ -255,15 +269,15 @@ void FenServeur::sendNetworkData()
 
     cout << message.toStdString() << endl << endl;
 
-    envoyerATous(message);
+    sendDataToClient(soc, message);
 }
 
 // Server data
 
-void FenServeur::sendServerData()
+void FenServeur::sendServerData(QTcpSocket *soc)
 {
     Serveur sm(clients);
-    //sm.setIp(serveur->serverAddress().toString());  // MAJ de l'adresse du serveur
+    // sm.setIp(serveur->serverAddress().toString());  // MAJ de l'adresse du serveur
 
     QJsonObject  js ;
     sm.write(js);
@@ -273,5 +287,10 @@ void FenServeur::sendServerData()
 
     cout << message.toStdString() << endl << endl;
 
-    envoyerATous(message);
+    sendDataToClient(soc, message);
+}
+
+void FenServeur::sendAllDataSlot(QTcpSocket *soc)
+{
+
 }

@@ -19,10 +19,10 @@ void DisplaySettingsDialog::initWidgets()
     processGroup->setLayout(processLayout);
 
     QLabel *processFqLabel = new QLabel("Fréquence d'acquisition");
-    processFqLE = new QSpinBox();
+    processFqSB = new QSpinBox();
 
     processLayout->addWidget(processFqLabel, 0, 0, 1, 3);
-    processLayout->addWidget(processFqLE, 0, 3);
+    processLayout->addWidget(processFqSB, 0, 3);
 
     // Groupe CPU
     QGroupBox *cpuGroup = new QGroupBox("CPU");
@@ -30,10 +30,10 @@ void DisplaySettingsDialog::initWidgets()
     cpuGroup->setLayout(cpuLayout);
 
     QLabel *cpuFqLabel = new QLabel("Fréquence d'acquisition");
-    cpuFqLE = new QSpinBox();
+    cpuFqSB = new QSpinBox();
 
     cpuLayout->addWidget(cpuFqLabel, 0, 0, 1, 3);
-    cpuLayout->addWidget(cpuFqLE, 0, 3);
+    cpuLayout->addWidget(cpuFqSB, 0, 3);
 
     // Groupe Mémoire
     QGroupBox *memoryGroup = new QGroupBox("Mémoire");
@@ -41,10 +41,10 @@ void DisplaySettingsDialog::initWidgets()
     memoryGroup->setLayout(memoryLayout);
 
     QLabel *memoryFqLabel = new QLabel("Fréquence d'acquisition");
-    memoryFqLE = new QSpinBox();
+    memoryFqSB = new QSpinBox();
 
     memoryLayout->addWidget(memoryFqLabel, 0, 0, 1, 3);
-    memoryLayout->addWidget(memoryFqLE, 0, 3);
+    memoryLayout->addWidget(memoryFqSB, 0, 3);
 
     // Groupe DISK group
     QGroupBox *diskGroup = new QGroupBox("Disques");
@@ -52,10 +52,10 @@ void DisplaySettingsDialog::initWidgets()
     diskGroup->setLayout(diskLayout);
 
     QLabel *diskFqLabel = new QLabel("Fréquence d'acquisition");
-    diskFqLE = new QSpinBox();
+    diskFqSB = new QSpinBox();
 
     diskLayout->addWidget(diskFqLabel, 0, 0, 1, 3);
-    diskLayout->addWidget(diskFqLE, 0, 3);
+    diskLayout->addWidget(diskFqSB, 0, 3);
 
 
     // Groupe Ethernet
@@ -64,25 +64,83 @@ void DisplaySettingsDialog::initWidgets()
     ethGroup->setLayout(ethLayout);
 
     QLabel *ethFqLabel = new QLabel("Fréquence d'acquisition");
-    ethFqLE = new QSpinBox();
+    ethFqSB = new QSpinBox();
 
     ethLayout->addWidget(ethFqLabel, 0, 0, 1, 3);
-    ethLayout->addWidget(ethFqLE, 0, 3);
+    ethLayout->addWidget(ethFqSB, 0, 3);
 
-    // Button
-    validButton = new QPushButton("Valider les modifications");
+    // By group Layering
 
-    // Layering
+    byCompsGroup = new QGroupBox;
+    byCompsGroup->setObjectName("perf-graph");
 
     QVBoxLayout *vlayout = new QVBoxLayout();
+    byCompsGroup->setLayout(vlayout);
     vlayout->addWidget(processGroup);
     vlayout->addWidget(cpuGroup);
     vlayout->addWidget(memoryGroup);
     vlayout->addWidget(diskGroup);
     vlayout->addWidget(ethGroup);
+
+    // section envoi général
+
+    globalGroup = new QGroupBox;
+    globalGroup->setObjectName("perf-graph");
+
+    QLabel *globLabel = new QLabel("Fréquence d'acquisition");
+    globalSB = new QSpinBox();
+    QGridLayout *globLayout = new QGridLayout();
+    globalGroup->setLayout(globLayout);
+    globLayout->addWidget(globLabel, 0, 0, 1, 3);
+    globLayout->addWidget(globalSB, 0, 3);
+
+
+    // checkboxes
+    byCompsCB = new QCheckBox("Acquisition par composants");
+    globCB = new QCheckBox("Acquisition globale");
+
+    // Button
+    validButton = new QPushButton("Valider les modifications");    
+    validButton->setFixedHeight(30);
+
     vlayout->addWidget(validButton);
 
-    setLayout(vlayout);
+
+    QVBoxLayout *genLayout = new QVBoxLayout();
+    genLayout->addWidget(byCompsCB);
+    genLayout->addWidget(byCompsGroup);
+    genLayout->addWidget(globCB);
+    genLayout->addWidget(globalGroup);
+    genLayout->addWidget(validButton);
+
+    setLayout(genLayout);
+
+    // states management
+
+    globCB->setChecked(true);
+    byCompsGroup->setEnabled(false);
+
+    // signals
+
+    connect(byCompsCB, SIGNAL(clicked(bool)), this, SLOT(enableCompsGroup()));
+    connect(globCB, SIGNAL(clicked(bool)), this, SLOT(enableGlobalGroup()));
+}
+
+
+// Gestion des états
+
+void DisplaySettingsDialog::enableCompsGroup()
+{
+    byCompsGroup->setEnabled(true);
+    globCB->setChecked(false);
+    globalGroup->setEnabled(false);
+}
+
+void DisplaySettingsDialog::enableGlobalGroup()
+{
+    byCompsGroup->setEnabled(false);
+    byCompsCB->setChecked(false);
+    globalGroup->setEnabled(true);
 }
 
 
@@ -95,3 +153,4 @@ DisplaySettingsDialog::~DisplaySettingsDialog()
 {
 
 }
+

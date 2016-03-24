@@ -26,6 +26,7 @@ class FenServeur : public QWidget
         FenServeur();
      // envoyer a tout les client connecter le message
         void envoyerATous(const QString &message);
+        void sendDataToClient(QTcpSocket *soc, const QString &message);
     // trouver client par socket
         Client *findClientBySocket(QTcpSocket *socket);
 
@@ -39,12 +40,17 @@ class FenServeur : public QWidget
 
         // broadcaster
         // void sendVMData();
-        void sendProcessesData();
-        void sendCpuData();
-        void sendRamData();
-        void sendDiskData();
-        void sendNetworkData();
-        void sendServerData();
+        void sendProcessesData(QTcpSocket * soc);
+        void sendCpuData(QTcpSocket * soc);
+        void sendRamData(QTcpSocket * soc);
+        void sendDiskData(QTcpSocket * soc);
+        void sendNetworkData(QTcpSocket * soc);
+        void sendServerData(QTcpSocket * soc);
+
+        void sendAllDataSlot(QTcpSocket *soc);
+
+signals:
+        void sendProcessesDataSignal(QTcpSocket *socket);
 
     private:
         QLabel *etatServeur;

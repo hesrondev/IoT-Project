@@ -22,12 +22,12 @@ Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::curre
     networkFq = 1;
     serverFq = 1;
 
-    processTimer = new QTimer();
-    cpuTimer = new QTimer();
-    ramTimer = new QTimer();
-    diskTimer = new QTimer();
-    networkTimer = new QTimer();
-    serverTimer = new QTimer();
+    processTimer = new TimerCustom(socket);
+    cpuTimer = new TimerCustom(socket);
+    ramTimer = new TimerCustom(socket);
+    diskTimer = new TimerCustom(socket);
+    networkTimer = new TimerCustom(socket);
+    serverTimer = new TimerCustom(socket);
 }
 
 void Client::read(const QJsonObject &json)
@@ -69,7 +69,7 @@ void Client::stopTimers()
 
 void Client::startTimers()
 {
-    int ms = 1000;
+    int ms = 50;
 
     processTimer->start(ms * processFq);
     cpuTimer->start(ms * cpuFq);

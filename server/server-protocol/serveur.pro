@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     Data/ram.cpp \
     Data/disque.cpp \
     Data/network.cpp \
-    Data/client.cpp
+    Data/client.cpp \
+    Data/timercustom.cpp
 
 HEADERS  += FenServeur.h \
     Data/cpu.h \
@@ -34,6 +35,7 @@ HEADERS  += FenServeur.h \
     Data/disque.h \
     Data/network.h \
     Data/client.h \
-    Data/serverMessage.h
+    Data/serverMessage.h \
+    Data/timercustom.h
 
 FORMS    += main.ui

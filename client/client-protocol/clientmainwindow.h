@@ -31,6 +31,7 @@ class ClientMainWindow : public MainWindow
         void donneesRecues();
         void connecte();
         void deconnecte();
+        void deconnexion();
         void erreurSocket(QAbstractSocket::SocketError erreur);
 
     private:

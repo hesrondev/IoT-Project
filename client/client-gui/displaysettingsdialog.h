@@ -10,25 +10,37 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QGroupBox>
+#include <QCheckBox>
 
 class DisplaySettingsDialog : public QDialog
 {
+    Q_OBJECT
+
 public:
     DisplaySettingsDialog();
 
     void initWidgets();
-
     ~DisplaySettingsDialog();
+
+public slots:
+    void enableCompsGroup();
+    void enableGlobalGroup();
 
 private:
 
-    QSpinBox *processFqLE;
-    QSpinBox *cpuFqLE;
-    QSpinBox *memoryFqLE;
-    QSpinBox *diskFqLE;
-    QSpinBox *ethFqLE;
-
+    QSpinBox *processFqSB;
+    QSpinBox *cpuFqSB;
+    QSpinBox *memoryFqSB;
+    QSpinBox *diskFqSB;
+    QSpinBox *ethFqSB;
+    QSpinBox *globalSB;
+    QGroupBox *globalGroup;
+    QGroupBox *byCompsGroup;
     QPushButton *validButton;
+
+    QCheckBox *byCompsCB;
+    QCheckBox *globCB;
 
 };
 

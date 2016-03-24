@@ -11,6 +11,7 @@ ClientMainWindow::ClientMainWindow() : MainWindow()
     // Socket and signals
 
     socket = new QTcpSocket(this);
+
     connect(socket, SIGNAL(readyRead()), this, SLOT(donneesRecues()));
     connect(socket, SIGNAL(connected()), this, SLOT(connecte()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(deconnecte()));
@@ -18,6 +19,9 @@ ClientMainWindow::ClientMainWindow() : MainWindow()
 
     // server login widget
     connect(serverLogin, SIGNAL(serverConnectionSignal(QString,QString,QString,QString)), this, SLOT(on_boutonConnexion_clicked(QString,QString,QString,QString)));
+
+    // deconnexion
+    connect(_menuBar->actionDisconnect, SIGNAL(triggered(bool)), this, SLOT(deconnexion()));
 
     tailleMessage = 0;
 
@@ -108,6 +112,7 @@ void ClientMainWindow::on_boutonEnvoyer_clicked()
     socket->write(paquet); // On envoie le paquet
 }
 
+
 // Appuyer sur la touche Entrée a le même effet que cliquer sur le bouton "Envoyer"
 void ClientMainWindow::on_message_returnPressed()
 {
@@ -152,13 +157,23 @@ void ClientMainWindow::donneesRecues()
 void ClientMainWindow::connecte()
 {
     displayStatus(tr("Connexion réussie !"));
-    //boutonConnexion->setEnabled(true);
+
+    // activation du bouton de déconnexion
+    _menuBar->actionDisconnect->setEnabled(true);
+
 }
 
 // Ce slot est appelé lorsqu'on est déconnecté du serveur
 void ClientMainWindow::deconnecte()
 {
     displayStatus(tr("Déconnecté du serveur"));
+    _menuBar->actionDisconnect->setEnabled(false);
+}
+
+void ClientMainWindow::deconnexion()
+{
+    socket->abort(); // On désactive les connexions précédentes s'il y en a
+    _menuBar->actionDisconnect->setEnabled(false);
 }
 
 // Ce slot est appelé lorsqu'il y a une erreur

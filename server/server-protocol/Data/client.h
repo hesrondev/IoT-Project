@@ -5,6 +5,7 @@
 #include <QDateTime>
 #include <QDate>
 
+#include "timercustom.h"
 using namespace std;
 
 class Client
@@ -28,12 +29,12 @@ public:
 private:
     QTcpSocket* socket;
 
-    QTimer *processTimer;
-    QTimer *cpuTimer;
-    QTimer *ramTimer;
-    QTimer *diskTimer;
-    QTimer *networkTimer;
-    QTimer *serverTimer;
+    TimerCustom *processTimer;
+    TimerCustom *cpuTimer;
+    TimerCustom *ramTimer;
+    TimerCustom *diskTimer;
+    TimerCustom *networkTimer;
+    TimerCustom *serverTimer;
 
     int processFq;
     int cpuFq;

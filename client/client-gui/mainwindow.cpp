@@ -55,7 +55,6 @@ void MainWindow::displayStatus(const QString &message)
     _statusBar->showMessage(message, 2000);
 }
 
-
 /* Slots
  *
  */

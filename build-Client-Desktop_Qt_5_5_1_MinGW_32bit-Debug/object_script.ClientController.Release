@@ -28,6 +28,7 @@ INPUT(
 ./release\clientmainwindow.o
 ./release\observer.o
 ./release\qrc_ressources.o
+./release\moc_displaysettingsdialog.o
 ./release\moc_mainwindow.o
 ./release\moc_performancetab.o
 ./release\moc_serverlogindialog.o
