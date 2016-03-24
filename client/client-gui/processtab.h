@@ -7,6 +7,7 @@
 #include <QHeaderView>
 #include <QAction>
 #include <QToolBar>
+#include <QLabel>
 
 
 class ProcessTab : public QWidget

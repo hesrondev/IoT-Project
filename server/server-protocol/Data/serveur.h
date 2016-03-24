@@ -5,31 +5,23 @@
 #include <QList>
 
 #include"client.h"
-#include"serverMessage.h"
+#include"component.h"
 
 using namespace std;
 
 
-
-
-class Serveur : public ServerMessage
+class Serveur : public Component
 {
 public:
     Serveur(QList<Client *> clients);
-    QString getNom() const;
-    void setNom(const QString &value);
-
-    QString getIp() const;
-    void setIp(const QString &value);
-
-    int getPort() const;
-    void setPort(int value);
-
-    QList<Client*> getListClients() const;
-    void setListClients(const QList<Client*> &value);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json);
+
+    void updateData();
+    void updateData(QList <Client*> listClients);
+
+    virtual ~Serveur();
 
 private:
     QString nom;

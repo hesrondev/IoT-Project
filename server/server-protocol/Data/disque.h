@@ -3,29 +3,21 @@
 #include <iostream>
 #include <QJsonObject>
 
-#include "serverMessage.h"
+#include "component.h"
 
 using namespace std;
 
 
-class Disque : public ServerMessage
+class Disque : public Component
 {
 public:
     Disque();
-    QString getNom() const;
-    void setNom(const QString &value);
-
-    double getCapaciteUtiliser() const;
-    void setCapaciteUtiliser(double value);
-
-    double getCapaciteLibre() const;
-    void setCapaciteLibre(double value);
-
-    double getMemoireMax() const;
-    void setMemoireMax(double value);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
+
+    void updateData();
+    virtual ~Disque();
 
 private:
     QString nom;

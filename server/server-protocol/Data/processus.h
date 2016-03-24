@@ -4,34 +4,21 @@
 #include <iostream>
 #include <QJsonObject>
 
-#include "serverMessage.h"
+#include "component.h"
 
 using namespace std;
 
-class Processus : public ServerMessage
+class Processus : public Component
 {
 public:
     Processus();
-    QString getNom() const;
-    void setNom(const QString &value);
-
-    int getPid() const;
-    void setPid(int value);
-
-    bool getStatus() const;
-    void setStatus(bool value);
-
-    QString getUtilisateur() const;
-    void setUtilisateur(const QString &value);
-
-    int getUid() const;
-    void setUid(int value);
-
-    double getTaille() const;
-    void setTaille(double value);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
+
+    void updateData();
+
+    virtual ~Processus();
 
 private:
     QString nom;

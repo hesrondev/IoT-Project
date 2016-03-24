@@ -3,26 +3,25 @@
 #include <iostream>
 #include <QJsonObject>
 
-#include "serverMessage.h"
+#include "component.h"
 
 using namespace std;
 
-class Network : public ServerMessage
+class Network : public Component
 {
 public:
     Network();
-    double getDebitEnvoi() const;
-    void setDebitEnvoi(double value);
-
-    double getDebitRecu() const;
-    void setDebitRecu(double value);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
 
+    void updateData();
+
     void setIpv4(const QString &value);
 
     void setIpv6(const QString &value);
+
+    virtual ~Network();
 
 private:
     QString nom;

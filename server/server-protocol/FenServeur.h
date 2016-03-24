@@ -8,13 +8,13 @@
 #include <QTimer>
 
 #include "Data/cpu.h"
-#include "Data/processus.h"
+#include "Data/processesactivity.h"
 #include "Data/ram.h"
 #include "Data/network.h"
 #include "Data/serveur.h"
-#include "Data/disque.h"
+#include "Data/disksactivity.h"
 #include "Data/client.h"
-#include "Data/serverMessage.h"
+#include "Data/component.h"
 
 
 class FenServeur : public QWidget
@@ -56,11 +56,18 @@ signals:
         QLabel *etatServeur;
         QPushButton *boutonQuitter;
     // le serveur sur le reseau
-        QTcpServer *serveur;
+        QTcpServer *serveurTcp;
       // liste des client
         QList<Client *> clients;
        // la taille du message
         quint16 tailleMessage;
+
+        ProcessesActivity processes;
+        DisksActivity disks;
+        Cpu *cpu;
+        Ram *ram;
+        Network *network;
+        Serveur *server;
 };
 
 #endif

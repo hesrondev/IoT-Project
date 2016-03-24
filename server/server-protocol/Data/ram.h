@@ -3,26 +3,22 @@
 #include <iostream>
 #include <QJsonObject>
 
-#include "serverMessage.h"
+#include "component.h"
 
 using namespace std;
 
 
-class Ram : public ServerMessage
+class Ram : public Component
 {
 public:
     Ram();
-    double getCapacite() const;
-    void setCapacite(double value);
-
-    double getUtiliser() const;
-    void setUtiliser(double value);
-
-    double getDisponible() const;
-    void setDisponible(double value);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
+
+    void updateData();
+
+    virtual ~Ram();
 
 private:
     QString nom;

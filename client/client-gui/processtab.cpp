@@ -3,6 +3,7 @@
 ProcessTab::ProcessTab()
 {
 
+
     // Toobar
 
     QToolBar *toolbar = new QToolBar();
@@ -29,10 +30,14 @@ ProcessTab::ProcessTab()
     tableWidget->horizontalHeaderItem(0)->setTextAlignment(Qt::AlignLeft);
 
 
+    QLabel *legendLabel = new QLabel("Liste des processus en cours d'exécution");
+    legendLabel->setFixedHeight(40);
+
     // Layering
 
     QVBoxLayout *vl = new QVBoxLayout();
     setLayout(vl);
-    vl->addWidget(toolbar);
+    //vl->addWidget(toolbar);
+    vl->addWidget(legendLabel);
     vl->addWidget(tableWidget);
 }

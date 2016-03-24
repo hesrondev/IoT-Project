@@ -1,6 +1,6 @@
 #include "network.h"
 
-Network::Network() : ServerMessage("NETWORK")
+Network::Network() : Component("NETWORK")
 {
     nom = "network";
     debitEnvoi = (double)rand() / RAND_MAX;
@@ -30,6 +30,15 @@ void Network::write(QJsonObject &json) const
     json["ipv6"] = ipv6;
 }
 
+void Network::updateData()
+{
+    nom = "network";
+    debitEnvoi = (double)rand() / RAND_MAX;
+    debitRecu = (double)rand() / RAND_MAX;
+    ipv4 = "0.0.0.0";
+    ipv6 = "XXX-ipv6-XXX";
+}
+
 void Network::setIpv4(const QString &value)
 {
     ipv4 = value;
@@ -38,4 +47,9 @@ void Network::setIpv4(const QString &value)
 void Network::setIpv6(const QString &value)
 {
     ipv6 = value;
+}
+
+Network::~Network()
+{
+
 }

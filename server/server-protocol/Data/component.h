@@ -5,15 +5,16 @@
 
 using namespace std;
 
-class ServerMessage
+class Component
 {
 public:
-    ServerMessage(const QString &value);
+    Component(const QString &value);
+    virtual void updateData() = 0;
+    virtual ~Component();
 
 protected:
 
     QString type;
-
 
 };
 

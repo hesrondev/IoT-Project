@@ -1,74 +1,14 @@
 #include "processus.h"
 
 
-Processus::Processus() : ServerMessage("PROCESS")
+Processus::Processus() : Component("PROCESS")
 {
-     nom ="processus1";
+     nom = "processus1";
      pid = (int)rand() / RAND_MAX;
-     status=true;
-     utilisateur="user1";
+     status = true;
+     utilisateur = "user1";
      uid = (int)rand() / RAND_MAX;
      taille = (double)rand() / RAND_MAX;
-}
-
-QString Processus::getNom() const
-{
-    return nom;
-}
-
-void Processus::setNom(const QString &value)
-{
-    nom = value;
-}
-
-int Processus::getPid() const
-{
-    return pid;
-}
-
-void Processus::setPid(int value)
-{
-    pid = value;
-}
-
-bool Processus::getStatus() const
-{
-    return status;
-}
-
-void Processus::setStatus(bool value)
-{
-    status = value;
-}
-
-QString Processus::getUtilisateur() const
-{
-    return utilisateur;
-}
-
-void Processus::setUtilisateur(const QString &value)
-{
-    utilisateur = value;
-}
-
-int Processus::getUid() const
-{
-    return uid;
-}
-
-void Processus::setUid(int value)
-{
-    uid = value;
-}
-
-double Processus::getTaille() const
-{
-    return taille;
-}
-
-void Processus::setTaille(double value)
-{
-    taille = value;
 }
 
 void Processus::read(const QJsonObject &json)
@@ -91,5 +31,20 @@ void Processus::write(QJsonObject &json) const
     json["utilisateur"] = utilisateur;
     json["uid"] = uid ;
     json["taille"] = taille;
+}
+
+void Processus::updateData()
+{
+    nom ="processus1";
+    pid = (int)rand() / RAND_MAX;
+    status = true;
+    utilisateur = "user1";
+    uid = (int)rand() / RAND_MAX;
+    taille = (double)rand() / RAND_MAX;
+}
+
+Processus::~Processus()
+{
+
 }
 

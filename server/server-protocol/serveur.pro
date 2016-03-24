@@ -17,7 +17,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         FenServeur.cpp \
-    Data/servermessage.cpp \
     Data/cpu.cpp \
     Data/processus.cpp \
     Data/serveur.cpp \
@@ -25,7 +24,10 @@ SOURCES += main.cpp\
     Data/disque.cpp \
     Data/network.cpp \
     Data/client.cpp \
-    Data/timercustom.cpp
+    Data/timercustom.cpp \
+    Data/component.cpp \
+    Data/processesactivity.cpp \
+    Data/disksactivity.cpp
 
 HEADERS  += FenServeur.h \
     Data/cpu.h \
@@ -35,7 +37,9 @@ HEADERS  += FenServeur.h \
     Data/disque.h \
     Data/network.h \
     Data/client.h \
-    Data/serverMessage.h \
-    Data/timercustom.h
+    Data/timercustom.h \
+    Data/component.h \
+    Data/processesactivity.h \
+    Data/disksactivity.h
 
 FORMS    += main.ui

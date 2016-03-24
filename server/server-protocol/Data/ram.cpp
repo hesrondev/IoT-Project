@@ -1,41 +1,11 @@
 #include "ram.h"
 
-Ram::Ram() : ServerMessage("RAM")
+Ram::Ram() : Component("RAM")
 {
     nom = "Mémoire RAM";
     capacite = (double)rand() / RAND_MAX;
     utiliser = (double)rand() / RAND_MAX;
     disponible = (double)rand() / RAND_MAX;
-}
-
-double Ram::getCapacite() const
-{
-    return capacite;
-}
-
-void Ram::setCapacite(double value)
-{
-    capacite = value;
-}
-
-double Ram::getUtiliser() const
-{
-    return utiliser;
-}
-
-void Ram::setUtiliser(double value)
-{
-    utiliser = value;
-}
-
-double Ram::getDisponible() const
-{
-    return disponible;
-}
-
-void Ram::setDisponible(double value)
-{
-    disponible = value;
 }
 
 void Ram::read(const QJsonObject &json)
@@ -54,5 +24,18 @@ void Ram::write(QJsonObject &json) const
     json["capacite"] = capacite;
     json["utilise"] = utiliser;
     json["disponible"] = disponible;
+}
+
+void Ram::updateData()
+{
+    nom = "Mémoire RAM";
+    capacite = (double)rand() / RAND_MAX;
+    utiliser = (double)rand() / RAND_MAX;
+    disponible = (double)rand() / RAND_MAX;
+}
+
+Ram::~Ram()
+{
+
 }
 

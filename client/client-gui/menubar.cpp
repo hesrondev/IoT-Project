@@ -16,7 +16,7 @@ void MenuBar::initWidgets()
 
     actionQuit = new QAction(QIcon(":icons/exit"), "Quitter", menuFile);
     actionNewConnection = new QAction(QIcon(":icons/server"), "Nouvelle connexion", menuFile);
-    actionDisconnect = new QAction(QIcon(""), "Déconnexion du serveur", menuFile);
+    actionDisconnect = new QAction(QIcon(":icons/stop"), "Déconnexion du serveur", menuFile);
     actionDisconnect->setEnabled(false);
     actionRefresh = new QAction(QIcon(":icons/refresh"), "Actualiser", menuDisplay);
     actionSettings = new QAction(QIcon(":icons/settings"), "Paramètres", menuDisplay);

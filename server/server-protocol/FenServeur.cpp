@@ -19,18 +19,27 @@ FenServeur::FenServeur()
     layout->addWidget(boutonQuitter);
     setLayout(layout);
 
+    // init
+    server = new Serveur(clients);
+    cpu = new Cpu();
+    ram = new Ram();
+    network = new Network();
 
     // Gestion du serveur this permet que lorsque la fenetre est detruit le serveur aussi
 
-    serveur = new QTcpServer(this);
-    if (!serveur->listen(QHostAddress::Any, 50885))     // Démarrage du serveur sur toutes les IP disponibles et sur le port 50585
+    serveurTcp = new QTcpServer(this);
+    if (!serveurTcp->listen(QHostAddress::Any, 50885))     // Démarrage du serveur sur toutes les IP disponibles et sur le port 50585
     {
-        etatServeur->setText(tr("Le serveur n'a pas pu être démarré. Raison :<br />") + serveur->errorString());
+        etatServeur->setText(tr("Le serveur n'a pas pu être démarré. Raison :<br />") + serveurTcp->errorString());
     }
     else
     {
-        etatServeur->setText(tr("Le serveur a été démarré sur le port <strong>") + QString::number(serveur->serverPort()) + tr("</strong>.<br />Des clients peuvent maintenant se connecter."));
-        connect(serveur, SIGNAL(newConnection()), this, SLOT(nouvelleConnexion()));
+        etatServeur->setText(tr("Le serveur a été démarré sur le port <strong>") + QString::number(serveurTcp->serverPort()) + tr("</strong>.<br />Des clients peuvent maintenant se connecter."));
+        connect(serveurTcp, SIGNAL(newConnection()), this, SLOT(nouvelleConnexion()));
+
+        // initialisation de l'adresse ip
+
+
     }
 
     tailleMessage = 0;
@@ -95,7 +104,7 @@ void FenServeur::nouvelleConnexion()
     envoyerATous(tr("Un nouveau client vient de se connecter"));
 
     // récupérer la socket correspondant au nouveau client
-    QTcpSocket * socketClient= serveur->nextPendingConnection();
+    QTcpSocket * socketClient= serveurTcp->nextPendingConnection();
 
     Client *nouveauClient = new Client(clients.size() + 1, socketClient);
 
@@ -192,9 +201,9 @@ void FenServeur::deconnexionClient()
 
 void FenServeur::sendProcessesData(QTcpSocket *soc)
 {
-    Processus sm;
-    QJsonObject  js;
-    sm.write(js);
+    QJsonObject js;
+    processes.updateData();
+    processes.write(js);
 
     QJsonDocument doc(js);
     QString message(doc.toJson(QJsonDocument::Compact));
@@ -208,9 +217,9 @@ void FenServeur::sendProcessesData(QTcpSocket *soc)
 
 void FenServeur::sendCpuData(QTcpSocket* soc)
 {
-    Cpu sm;
-    QJsonObject  js ;
-    sm.write(js);
+    QJsonObject  js;
+    cpu->updateData();
+    cpu->write(js);
 
     QJsonDocument doc(js);
     QString message(doc.toJson(QJsonDocument::Compact));
@@ -224,9 +233,9 @@ void FenServeur::sendCpuData(QTcpSocket* soc)
 
 void FenServeur::sendRamData(QTcpSocket *soc)
 {
-    Ram sm;
-    QJsonObject  js ;
-    sm.write(js);
+    QJsonObject  js;
+    ram->updateData();
+    ram->write(js);
 
     QJsonDocument doc(js);
     QString message(doc.toJson(QJsonDocument::Compact));
@@ -240,9 +249,10 @@ void FenServeur::sendRamData(QTcpSocket *soc)
 
 void FenServeur::sendDiskData(QTcpSocket *soc)
 {
-    Disque sm;
-    QJsonObject  js ;
-    sm.write(js);
+
+    QJsonObject  js;
+    disks.updateData();
+    disks.write(js);
 
     QJsonDocument doc(js);
     QString message(doc.toJson(QJsonDocument::Compact));
@@ -256,13 +266,13 @@ void FenServeur::sendDiskData(QTcpSocket *soc)
 
 void FenServeur::sendNetworkData(QTcpSocket *soc)
 {
-    Network sm;
 
     //sm.setIpv4(ipv4);
     //sm.setIpv6(ipv6);
 
     QJsonObject  js ;
-    sm.write(js);
+    network->updateData();
+    network->write(js);
 
     QJsonDocument doc(js);
     QString message(doc.toJson(QJsonDocument::Compact));
@@ -276,11 +286,11 @@ void FenServeur::sendNetworkData(QTcpSocket *soc)
 
 void FenServeur::sendServerData(QTcpSocket *soc)
 {
-    Serveur sm(clients);
-    // sm.setIp(serveur->serverAddress().toString());  // MAJ de l'adresse du serveur
+    // Mise à jour des adresses ici...
 
     QJsonObject  js ;
-    sm.write(js);
+    server->updateData(clients);
+    server->write(js);
 
     QJsonDocument doc(js);
     QString message(doc.toJson(QJsonDocument::Compact));

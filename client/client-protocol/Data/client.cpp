@@ -8,7 +8,7 @@ Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::curre
 {
     this->socket = socket;
 
-    adresseIp ="192.168.1.1";
+    adresseIp = "0.0.0.0";
     IdConnexion = id;
     nom ="client";
     status = true;
