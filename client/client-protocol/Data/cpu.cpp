@@ -56,6 +56,8 @@ void Cpu::updateObserver()
 
         ((ProcessorTabDetails*)observer)->addData(1, tauxUtilisation);
         ((ProcessorTabDetails*)observer)->addData(2, vitesse);
+
+        ((PerformanceCustomButton*)buttonObserver)->updateValues(tU, speed);
     }
 }
 

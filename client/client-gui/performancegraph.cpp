@@ -129,6 +129,7 @@ void PerformanceGraph::addData(int i, double y)
 
 void PerformanceGraph::appendPoint(int i, double y)
 {
+    /*
     // curve 1
     if (i == 1)
     {
@@ -153,11 +154,13 @@ void PerformanceGraph::appendPoint(int i, double y)
 
 
     std::cout << "drawing..." << std::endl;
+    */
 
 }
 
 void PerformanceGraph::drawCurve(int i)
 {
+    /*
     // On trace
 
     if (i == 1)
@@ -165,4 +168,5 @@ void PerformanceGraph::drawCurve(int i)
 
     else
         curve2.setSamples(XDATA, YDATA_2);
+        */
 }

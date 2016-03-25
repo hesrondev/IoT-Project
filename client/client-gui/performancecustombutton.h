@@ -7,10 +7,14 @@
 #include <QLabel>
 #include <QPixmap>
 
-class PerformanceCustomButton : public QPushButton
+#include "observer.h"
+
+class PerformanceCustomButton : public QPushButton, public Observer
 {
 public:
     PerformanceCustomButton(QPixmap icon, QString title);
+
+    void updateValues(const QString &v1, const QString &v2);
 
 private:
 

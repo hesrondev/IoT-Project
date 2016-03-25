@@ -41,6 +41,8 @@ void Ram::updateObserver()
 
             ((MemoryTabDetails*)observer)->updateData(nom, cp, cpFree, cpMax, per);
             ((MemoryTabDetails*)observer)->addData(1, utiliser);
+
+            ((PerformanceCustomButton*)buttonObserver)->updateValues(QString::number(per)+" %", cp);
         }
 
 }

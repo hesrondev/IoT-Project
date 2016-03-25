@@ -12,11 +12,13 @@ public:
     ServerMessage(const QString &value);
 
     void addObserver(Observer *obs);
+    void addButtonObserver(Observer *obs);
 
 protected:
 
     QString type;
     Observer *observer;
+    Observer *buttonObserver;
 
 };
 

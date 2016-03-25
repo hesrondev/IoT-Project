@@ -4,8 +4,14 @@ ClientMainWindow::ClientMainWindow() : MainWindow(), allData(&processes, &cpu, &
 {
     // Observers
     cpu.addObserver(_centralWidget->performanceTab()->getProcessorDetails());
+    cpu.addButtonObserver(_centralWidget->performanceTab()->getProcessorButton());
+
     network.addObserver(_centralWidget->performanceTab()->getNetworkDetails());
+    network.addButtonObserver(_centralWidget->performanceTab()->getNetworkButton());
+
     ram.addObserver(_centralWidget->performanceTab()->getMemoryDetails());
+    ram.addButtonObserver(_centralWidget->performanceTab()->getMemoryButton());
+
     server.addObserver(_centralWidget->serverTab());
 
     //

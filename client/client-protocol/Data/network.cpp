@@ -43,6 +43,8 @@ void Network::updateObserver()
             ((NetworkTabDetails*)observer)->updateData(nom, de, dr, ipv4, ipv6);
             ((NetworkTabDetails*)observer)->addData(1, debitEnvoi);
             ((NetworkTabDetails*)observer)->addData(2, debitRecu);
+
+            ((PerformanceCustomButton*)buttonObserver)->updateValues(de, dr);
         }
 
 }

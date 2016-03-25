@@ -36,6 +36,14 @@ public:
 
     NetworkTabDetails *getNetworkDetails() const;
 
+    PerformanceCustomButton *getProcessorButton() const;
+
+    PerformanceCustomButton *getMemoryButton() const;
+
+    PerformanceCustomButton *getDiskButton() const;
+
+    PerformanceCustomButton *getNetworkButton() const;
+
 public slots:
     void setProcessorDetails();
     void setMemoryDetails();
@@ -47,6 +55,11 @@ private:
     MemoryTabDetails *memoryDetails;
     DiskTabDetails *diskDetails;
     NetworkTabDetails *networkDetails;
+
+    PerformanceCustomButton *processorButton;
+    PerformanceCustomButton *memoryButton;
+    PerformanceCustomButton *diskButton;
+    PerformanceCustomButton *networkButton;
 
     // layout
     QVBoxLayout *vlayout;

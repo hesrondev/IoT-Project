@@ -5,6 +5,7 @@
 
 #include "serverMessage.h"
 #include "client-gui/memorytabdetails.h"
+#include "client-gui/performancecustombutton.h"
 #include "client-gui/observer.h"
 
 using namespace std;

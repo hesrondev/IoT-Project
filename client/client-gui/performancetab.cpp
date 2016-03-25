@@ -15,10 +15,10 @@ PerformanceTab::PerformanceTab()
     gbox->setLayout(vl);
 
     // Buttons
-    PerformanceCustomButton *processorButton = new PerformanceCustomButton(QPixmap(":icons/processor"), "Processeur");
-    PerformanceCustomButton *memoryButton = new PerformanceCustomButton(QPixmap(":icons/memory"), "Mémoire");
-    PerformanceCustomButton *diskButton = new PerformanceCustomButton(QPixmap(":icons/disk"), "Disques");
-    PerformanceCustomButton *networkButton = new PerformanceCustomButton(QPixmap(":icons/network"), "Réseau");
+    processorButton = new PerformanceCustomButton(QPixmap(":icons/processor"), "Processeur");
+    memoryButton = new PerformanceCustomButton(QPixmap(":icons/memory"), "Mémoire");
+    diskButton = new PerformanceCustomButton(QPixmap(":icons/disk"), "Disques");
+    networkButton = new PerformanceCustomButton(QPixmap(":icons/network"), "Réseau");
 
     processorButton->setFixedHeight(60);
     memoryButton->setFixedHeight(60);
@@ -110,6 +110,26 @@ void PerformanceTab::setNetworkDetails()
 {
     resetVLayout();
     vlayout->addWidget(networkDetails);
+}
+
+PerformanceCustomButton *PerformanceTab::getNetworkButton() const
+{
+    return networkButton;
+}
+
+PerformanceCustomButton *PerformanceTab::getDiskButton() const
+{
+    return diskButton;
+}
+
+PerformanceCustomButton *PerformanceTab::getMemoryButton() const
+{
+    return memoryButton;
+}
+
+PerformanceCustomButton *PerformanceTab::getProcessorButton() const
+{
+    return processorButton;
 }
 
 // Getters

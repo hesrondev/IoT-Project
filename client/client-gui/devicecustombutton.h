@@ -9,7 +9,9 @@
 #include <QGroupBox>
 #include <QPixmap>
 
-class DeviceCustomButton : public QPushButton
+#include "observer.h"
+
+class DeviceCustomButton : public QPushButton, public Observer
 {
 public:
     DeviceCustomButton(QString deviceName, int deviceType = 1);

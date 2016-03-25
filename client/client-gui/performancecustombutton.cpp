@@ -17,8 +17,8 @@ PerformanceCustomButton::PerformanceCustomButton(QPixmap icon, QString title)
 
 
     // display columns
-    col2Label = new QLabel("4%");
-    col3Label = new QLabel("2,45 GHz");
+    col2Label = new QLabel("");
+    col3Label = new QLabel("");
 
     col2Label->setObjectName("perf-btn-subTitle");
     col3Label->setObjectName("perf-btn-subTitle");
@@ -38,4 +38,10 @@ PerformanceCustomButton::PerformanceCustomButton(QPixmap icon, QString title)
     hl->addStretch(1);
 
     setLayout(hl);
+}
+
+void PerformanceCustomButton::updateValues(const QString &v1, const QString &v2)
+{
+    col2Label->setText(v1);
+    col3Label->setText(v2);
 }
