@@ -6,6 +6,7 @@ ClientMainWindow::ClientMainWindow() : MainWindow(), allData(&processes, &cpu, &
     cpu.addObserver(_centralWidget->performanceTab()->getProcessorDetails());
     network.addObserver(_centralWidget->performanceTab()->getNetworkDetails());
     ram.addObserver(_centralWidget->performanceTab()->getMemoryDetails());
+    server.addObserver(_centralWidget->serverTab());
 
     //
 

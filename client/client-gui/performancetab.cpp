@@ -40,10 +40,10 @@ PerformanceTab::PerformanceTab()
     vlayout->setMargin(15);
     detailsGBox->setLayout(vlayout);
 
-    processorDetails = new ProcessorTabDetails("Processeur", "Intel core i7", "Pourcentage d'utilisation");
-    memoryDetails = new MemoryTabDetails("Mémoire", "4,0 Go DDR3", "Utilisation de la mémoire");
-    diskDetails = new DiskTabDetails("Disques (C: D:)", "SATA XREHYUFHT556", "Temps d'activité");
-    networkDetails = new NetworkTabDetails("Ethernet", "Atheros Qualcom Intel X", "Débit");
+    processorDetails = new ProcessorTabDetails("Activité du Processeur", "", "Pourcentage d'utilisation");
+    memoryDetails = new MemoryTabDetails("Activité de la Mémoire", "", "Utilisation de la mémoire");
+    diskDetails = new DiskTabDetails("Activité des Disques", "", "Temps d'activité");
+    networkDetails = new NetworkTabDetails("Activité du Réseau", "", "Débit");
 
     vlayout->addWidget(processorDetails);
 

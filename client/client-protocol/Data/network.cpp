@@ -41,8 +41,9 @@ void Network::updateObserver()
             QString dr = QString::number(debitRecu) + " Kbits/s";
 
             ((NetworkTabDetails*)observer)->updateData(nom, de, dr, ipv4, ipv6);
+            ((NetworkTabDetails*)observer)->addData(1, debitEnvoi);
+            ((NetworkTabDetails*)observer)->addData(2, debitRecu);
         }
-
 
 }
 

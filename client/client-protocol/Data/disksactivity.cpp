@@ -1,7 +1,7 @@
 #include "disksactivity.h"
-DisksActivity::DisksActivity()
+DisksActivity::DisksActivity() : ServerMessage("disks")
 {
-    type = "disks";
+
 }
 void DisksActivity::updateData()
 {

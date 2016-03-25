@@ -40,6 +40,7 @@ void Ram::updateObserver()
             int per = (int) ((utiliser * 100) / capacite);
 
             ((MemoryTabDetails*)observer)->updateData(nom, cp, cpFree, cpMax, per);
+            ((MemoryTabDetails*)observer)->addData(1, utiliser);
         }
 
 }

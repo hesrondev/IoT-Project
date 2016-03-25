@@ -17,7 +17,7 @@ void Cpu::read(const QJsonObject &json)
 {
     type = json["type"].toString();
     nom = json["nom"].toString();
-    tauxUtilisation = json["tauxUtilisation"].toInt();
+    tauxUtilisation = json["tauxUtilisation"].toDouble();
     vitesse = json["vitesse"].toDouble();
     vitesseMax = json["vitesseMax"].toDouble();
     nombreCoeurs= json["nombreCoeurs"].toInt();
@@ -53,6 +53,9 @@ void Cpu::updateObserver()
         QString threads = QString::number(nombreThreads);
 
         ((ProcessorTabDetails*)observer)->updateData(nom, tU, speed, maxSpeed, cores, processes, threads);
+
+        ((ProcessorTabDetails*)observer)->addData(1, tauxUtilisation);
+        ((ProcessorTabDetails*)observer)->addData(2, vitesse);
     }
 }
 

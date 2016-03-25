@@ -21,7 +21,7 @@ public:
 
 private :
     QString nom ;
-    int tauxUtilisation ;
+    double tauxUtilisation ;
     double vitesse;
     double vitesseMax;
     int nombreCoeurs;

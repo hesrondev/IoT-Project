@@ -12,6 +12,8 @@ using namespace std;
 class Client : public ServerMessage
 {
 
+    friend class Serveur;
+
 public:
     Client();
     void read(const QJsonObject &json);

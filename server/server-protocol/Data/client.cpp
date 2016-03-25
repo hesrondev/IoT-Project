@@ -25,7 +25,7 @@ Client::Client(int id, QTcpSocket *socket) : dateDebutConnexion(QDateTime::curre
     serverFq = 1;
     globalFq = 1;
 
-    globalSendingState = true;
+    globalSendingState = false;
 
     processTimer = new TimerCustom(socket);
     cpuTimer = new TimerCustom(socket);
@@ -114,7 +114,7 @@ void Client::stopTimers()
 
 void Client::startTimers()
 {
-    int ms = 2000;
+    int ms = 100;
 
     // si envoie global non activé
     if (!globalSendingState)

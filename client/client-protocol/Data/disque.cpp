@@ -39,6 +39,7 @@ void Disque::updateObserver()
         QString cpMax = QString::number(memoireMax) + " Go";
 
         ((DiskTabDetails*)observer)->updateData(nom, cpUsed, cpFree, cpMax);
+        //((DiskTabDetails*)observer)->addData(1, capaciteUtiliser);
     }
 }
 

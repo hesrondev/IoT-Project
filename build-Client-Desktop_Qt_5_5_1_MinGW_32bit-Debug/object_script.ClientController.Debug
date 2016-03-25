@@ -33,6 +33,7 @@ INPUT(
 ./debug\qrc_ressources.o
 ./debug\moc_displaysettingsdialog.o
 ./debug\moc_mainwindow.o
+./debug\moc_performancegraph.o
 ./debug\moc_performancetab.o
 ./debug\moc_serverlogindialog.o
 ./debug\moc_clientmainwindow.o

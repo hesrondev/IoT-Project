@@ -117,8 +117,17 @@ void DisplaySettingsDialog::initWidgets()
 
     // states management
 
-    globCB->setChecked(true);
-    byCompsGroup->setEnabled(false);
+    byCompsCB->setChecked(true);
+    globalGroup->setEnabled(false);
+
+
+
+    processFqSB->setMinimum(1);
+    cpuFqSB->setMinimum(1);
+    memoryFqSB->setMinimum(1);
+    diskFqSB->setMinimum(1);
+    ethFqSB->setMinimum(1);
+    globalSB->setMinimum(1);
 
     // signals
 

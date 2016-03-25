@@ -3,7 +3,7 @@
 Cpu::Cpu() : Component("cpu")
 {
      nom ="cpu";
-     tauxUtilisation = (int)rand() / RAND_MAX;
+     tauxUtilisation = (double)rand() / RAND_MAX;
      vitesse = (double)rand() / RAND_MAX;
      vitesseMax = (double)rand() / RAND_MAX;
      nombreCoeurs = (int)rand() / RAND_MAX;
@@ -16,7 +16,7 @@ void Cpu::read(const QJsonObject &json)
 {
     type = json["type"].toString();
     nom = json["nom"].toString();
-    tauxUtilisation = json["tauxUtilisation"].toInt();
+    tauxUtilisation = json["tauxUtilisation"].toDouble();
     vitesse = json["vitesse"].toDouble();
     vitesseMax = json["vitesseMax"].toDouble();
     nombreCoeurs= json["nombreCoeurs"].toInt();
@@ -41,7 +41,7 @@ void Cpu::write(QJsonObject &json) const
 void Cpu::updateData()
 {
     nom = "cpu";
-    tauxUtilisation = (int)rand() / RAND_MAX;
+    tauxUtilisation = (double)rand() / RAND_MAX;
     vitesse = (double)rand() / RAND_MAX;
     vitesseMax = (double)rand() / RAND_MAX;
     nombreCoeurs = (int)rand() / RAND_MAX;

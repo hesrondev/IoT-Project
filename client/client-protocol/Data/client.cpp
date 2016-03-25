@@ -18,7 +18,7 @@ Client::Client() : ServerMessage("client"), dateDebutConnexion(QDateTime::curren
     serverFq = 1;
     globalFq = 1;
 
-    globalSendingState = true;
+    globalSendingState = false;
 }
 
 void Client::read(const QJsonObject &json)

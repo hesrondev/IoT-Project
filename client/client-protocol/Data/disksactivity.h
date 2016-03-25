@@ -5,7 +5,11 @@
 #include <QJsonObject>
 #include <QList>
 #include<QJsonArray>
-class DisksActivity
+
+#include "serverMessage.h"
+
+
+class DisksActivity : public ServerMessage
 {
 public:
     DisksActivity();
@@ -13,8 +17,8 @@ public:
     void read(const QJsonObject &json);
     void write(QJsonObject &json)const;
     ~DisksActivity();
+
 private:
-    QString type;
     QList <Disque> disks;
 };
 #endif // LISTDISKS_H
