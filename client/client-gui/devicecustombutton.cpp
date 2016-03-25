@@ -24,7 +24,7 @@ DeviceCustomButton::DeviceCustomButton(QString deviceName, int deviceType)
 
     QProgressBar *progressbar = new QProgressBar();
     QLabel *nameLabel = new QLabel(deviceName);
-    QLabel *spaceLabel = new QLabel("150 Go libres sur 450Go");
+    QLabel *spaceLabel = new QLabel("-- Go libres sur -- Go");
 
     glayout->addWidget(nameLabel, 0, 1, 1, 1);
     glayout->addWidget(iconLabel, 1, 0, 2, 1);

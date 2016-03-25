@@ -12,8 +12,7 @@ DiskTabDetails::DiskTabDetails(QString title, QString subTitle, QString graphLeg
     devicesGBox->setLayout(deviceLayout);
 
     deviceLayout->addWidget(new DeviceCustomButton("Disque (C:)", 1), 0, 0);
-    deviceLayout->addWidget(new DeviceCustomButton("Disque (D:)", 1), 0, 1);
-    deviceLayout->addWidget(new DeviceCustomButton("Disque (D:)", 2), 1, 0);
+    deviceLayout->addWidget(new DeviceCustomButton("USB-KEY (F:)", 2), 0, 1);
 
     // Layering
 

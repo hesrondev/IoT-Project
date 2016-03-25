@@ -20,15 +20,15 @@ MemoryTabDetails::MemoryTabDetails(QString title, QString subTitle, QString grap
     hlayout->addStretch(1);
 
     QLabel *usedLabel = new QLabel("En cours d'utilisation");
-    usedValueLabel = new QLabel("3200 Mo");
+    usedValueLabel = new QLabel("");
     usedValueLabel->setObjectName("perf-value");
 
     QLabel *freeLabel = new QLabel("Disponible");
-    freeValueLabel = new QLabel("777 Mo");
+    freeValueLabel = new QLabel("");
     freeValueLabel->setObjectName("perf-value");
 
     QLabel *maxLabel = new QLabel("Capacité");
-    maxValueLabel = new QLabel("4000 Mo");
+    maxValueLabel = new QLabel("");
     maxValueLabel->setObjectName("perf-value");
 
     glayout->addWidget(usedLabel, 0, 0);

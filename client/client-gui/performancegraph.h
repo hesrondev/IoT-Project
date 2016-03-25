@@ -11,6 +11,7 @@
 
 #include "qwt_plot.h"
 #include "qwt_plot_curve.h"
+#include "qwt_plot_grid.h"
 
 using namespace std;
 
@@ -49,6 +50,7 @@ protected:
     int maxSize;
 
     QwtPlot plot;
+    QwtPlotGrid gridPlot;
     QwtPlotCurve curve1;
     QwtPlotCurve curve2;
 

@@ -5,33 +5,33 @@ ProcessorTabDetails::ProcessorTabDetails(QString title, QString subTitle, QStrin
 {
     // labels
     QLabel *useLabel = new QLabel("Utilisation");
-    useValueLabel = new QLabel("17%");
+    useValueLabel = new QLabel("");
     useValueLabel->setObjectName("perf-value");
 
     QLabel *speedLabel = new QLabel("Vitesse");
-    speedValueLabel = new QLabel("1,50 Ghz");
+    speedValueLabel = new QLabel("");
     speedValueLabel->setObjectName("perf-value");
 
     QLabel *processLabel = new QLabel("Processus");
-    processValueLabel = new QLabel("15");
+    processValueLabel = new QLabel("");
     processValueLabel->setObjectName("perf-value");
 
     QLabel *threadLabel = new QLabel("Threads");
-    threadValueLabel = new QLabel("90");
+    threadValueLabel = new QLabel("");
     threadValueLabel->setObjectName("perf-value");
 
     QLabel *timeLabel = new QLabel("Durée de fonctionnement");
-    timeValueLabel = new QLabel("2:55:26:03");
+    timeValueLabel = new QLabel("");
     timeValueLabel->setObjectName("perf-value");
 
     // spec labels
 
     QLabel *speedMaxLabel = new QLabel("Vitesse maximale:");
-    speedMaxValueLabel = new QLabel("3,40 GHz");
+    speedMaxValueLabel = new QLabel("");
     speedMaxValueLabel->setObjectName("perf-value-small");
 
     QLabel *coreLabel = new QLabel("Coeurs:");
-    coreValueLabel = new QLabel("4");
+    coreValueLabel = new QLabel("");
     coreValueLabel->setObjectName("perf-value-small");
 
     // Footer Widget
@@ -100,5 +100,5 @@ void ProcessorTabDetails::updateData(const QString &nom, const QString &tU, cons
     coreValueLabel->setText(cores);
     processValueLabel->setText(processes);
     threadValueLabel->setText(threads);
-    timeValueLabel->setText("XXXX-TIME-XXXX");
+    timeValueLabel->setText("");
 }

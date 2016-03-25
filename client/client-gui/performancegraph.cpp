@@ -32,6 +32,8 @@ PerformanceGraph::PerformanceGraph(QString title, QString subTitle, QString grap
         YDATA_2.push_back(0); // on rempliT tout à 0
     }
 
+    gridPlot.attach(&plot);
+    gridPlot.setPen(QPen(QColor(204,204,204)));
     curve1.attach(&plot);
     curve2.attach(&plot);
 
@@ -129,14 +131,15 @@ void PerformanceGraph::addData(int i, double y)
 
 void PerformanceGraph::appendPoint(int i, double y)
 {
-    /*
     // curve 1
     if (i == 1)
     {
+
         for (int i = 0; i < YDATA_1.size()-1; i++) {
             YDATA_1[i] = YDATA_1[i+1];
         }
         YDATA_1[maxSize-1] = y;
+
 
         drawCurve(1);
     }
@@ -144,6 +147,7 @@ void PerformanceGraph::appendPoint(int i, double y)
     // curve 2
     else if (i == 2)
     {
+
         for (int i = 0; i < YDATA_2.size()-1; i++) {
             YDATA_2[i] = YDATA_2[i+1];
         }
@@ -152,21 +156,19 @@ void PerformanceGraph::appendPoint(int i, double y)
         drawCurve(2);
     }
 
-
     std::cout << "drawing..." << std::endl;
-    */
 
 }
 
 void PerformanceGraph::drawCurve(int i)
 {
-    /*
     // On trace
+
+    plot.startTimer(1000);
 
     if (i == 1)
         curve1.setSamples(XDATA, YDATA_1);
 
     else
         curve2.setSamples(XDATA, YDATA_2);
-        */
 }
